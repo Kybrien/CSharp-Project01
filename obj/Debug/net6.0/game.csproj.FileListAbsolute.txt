@@ -13,3 +13,17 @@ C:\Users\apatte\Desktop\CSharp Game\game\obj\Debug\net6.0\refint\game.dll
 C:\Users\apatte\Desktop\CSharp Game\game\obj\Debug\net6.0\game.pdb
 C:\Users\apatte\Desktop\CSharp Game\game\obj\Debug\net6.0\game.genruntimeconfig.cache
 C:\Users\apatte\Desktop\CSharp Game\game\obj\Debug\net6.0\ref\game.dll
+C:\Users\apatte\Desktop\CSharp-Project01\bin\Debug\net6.0\game.exe
+C:\Users\apatte\Desktop\CSharp-Project01\bin\Debug\net6.0\game.deps.json
+C:\Users\apatte\Desktop\CSharp-Project01\bin\Debug\net6.0\game.runtimeconfig.json
+C:\Users\apatte\Desktop\CSharp-Project01\bin\Debug\net6.0\game.dll
+C:\Users\apatte\Desktop\CSharp-Project01\bin\Debug\net6.0\game.pdb
+C:\Users\apatte\Desktop\CSharp-Project01\obj\Debug\net6.0\game.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\apatte\Desktop\CSharp-Project01\obj\Debug\net6.0\game.AssemblyInfoInputs.cache
+C:\Users\apatte\Desktop\CSharp-Project01\obj\Debug\net6.0\game.AssemblyInfo.cs
+C:\Users\apatte\Desktop\CSharp-Project01\obj\Debug\net6.0\game.csproj.CoreCompileInputs.cache
+C:\Users\apatte\Desktop\CSharp-Project01\obj\Debug\net6.0\game.dll
+C:\Users\apatte\Desktop\CSharp-Project01\obj\Debug\net6.0\refint\game.dll
+C:\Users\apatte\Desktop\CSharp-Project01\obj\Debug\net6.0\game.pdb
+C:\Users\apatte\Desktop\CSharp-Project01\obj\Debug\net6.0\game.genruntimeconfig.cache
+C:\Users\apatte\Desktop\CSharp-Project01\obj\Debug\net6.0\ref\game.dll
