@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace fight
 {
         public class Pokemon
         {
             private string name;
+            private string type;
+
             private int hp;
             private int attack;
             private int defense;
@@ -17,9 +20,10 @@ namespace fight
             private int speed;
             public int Potion { get; set; } = 5;
 
-            public Pokemon(string name, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed)
+            public Pokemon(string name, string type, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed)
             {
                 this.name = name;
+                this.type = type;
                 this.hp = hp;
                 this.attack = attack;
                 this.defense = defense;
@@ -139,6 +143,57 @@ namespace fight
                 Thread.Sleep(2000); // Pause for 2 seconds
             }
 
+    }
+
+
+public class Program
+    {
+        // Méthode pour lire les Pokémon à partir d'un fichier
+        public static List<Pokemon> ReadPokemonFromFile(string filePath)
+        {
+            List<Pokemon> pokemons = new List<Pokemon>();
+
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] parts = line.Split(',');
+                    if (parts.Length >= 7)
+                    {
+                        string name = parts[0];
+                        string type = parts[1];
+                        int hp = int.Parse(parts[2]);
+                        int attack = int.Parse(parts[3]);
+                        int defense = int.Parse(parts[4]);
+                        int specialAttack = int.Parse(parts[5]);
+                        int specialDefense = int.Parse(parts[6]);
+                        int speed = int.Parse(parts[7]);
+
+                        Pokemon pokemon = new Pokemon(name, type, hp, attack, defense, specialAttack, specialDefense, speed);
+                        pokemons.Add(pokemon);
+                    }
+                }
+            }
+
+            return pokemons;
+        }
+
+        public static void txtest(string[] args)
+        {
+            string filePath = "./CSharp-Project01/Pokedico.txt"; // Remplacez par le chemin réel de votre fichier
+            List<Pokemon> pokemons = ReadPokemonFromFile(filePath);
+
+            // Affichage des Pokémon pour vérifier la lecture du fichier
+            foreach (Pokemon pokemon in pokemons)
+            {
+                pokemon.DisplayStats();
+                Console.WriteLine(); // Pour ajouter une ligne vide entre les Pokémon
+            }
+
+            // Ici, vous pouvez ajouter la logique pour initialiser le jeu, choisir des Pokémon, etc.
         }
     }
+
+}
 
