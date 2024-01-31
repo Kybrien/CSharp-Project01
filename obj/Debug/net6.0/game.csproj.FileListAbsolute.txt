@@ -42,3 +42,17 @@ C:\Users\Adrien\Desktop\CSharp\CSharp-Project01\obj\Debug\net6.0\refint\game.dll
 C:\Users\Adrien\Desktop\CSharp\CSharp-Project01\obj\Debug\net6.0\game.pdb
 C:\Users\Adrien\Desktop\CSharp\CSharp-Project01\obj\Debug\net6.0\game.genruntimeconfig.cache
 C:\Users\Adrien\Desktop\CSharp\CSharp-Project01\obj\Debug\net6.0\ref\game.dll
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\bin\Debug\net6.0\game.exe
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\bin\Debug\net6.0\game.deps.json
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\bin\Debug\net6.0\game.runtimeconfig.json
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\bin\Debug\net6.0\game.dll
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\bin\Debug\net6.0\game.pdb
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\obj\Debug\net6.0\game.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\obj\Debug\net6.0\game.AssemblyInfoInputs.cache
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\obj\Debug\net6.0\game.AssemblyInfo.cs
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\obj\Debug\net6.0\game.csproj.CoreCompileInputs.cache
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\obj\Debug\net6.0\game.dll
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\obj\Debug\net6.0\refint\game.dll
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\obj\Debug\net6.0\game.pdb
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\obj\Debug\net6.0\game.genruntimeconfig.cache
+C:\Users\admin\OneDrive\Bureau\GC\c #\CSharp-Project01\obj\Debug\net6.0\ref\game.dll
