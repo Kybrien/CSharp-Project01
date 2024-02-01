@@ -1,0 +1,6 @@
+Tackle,40,Normal,Physique
+Growl,0,Normal,Statut
+Scratch,40,Normal,Physique
+Ember,40,Fire,Spéciale
+Water Gun,40,Water,Spéciale
+Thunder Shock,40,Electric,Spéciale

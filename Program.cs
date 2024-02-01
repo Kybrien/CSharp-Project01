@@ -131,6 +131,7 @@ class Program
             MovePlayer(keyInfo, carte);
             Console.Clear();
             AfficherCarte(carte);
+            listPoke.txtest();
 
         } while (keyInfo.Key != ConsoleKey.Escape);
     }
@@ -167,10 +168,10 @@ class Program
         if (IsValidMove(newPosY, newPosX, carte))
         {
             // Vérifier spécifiquement si le joueur est sur une case avec des hautes herbes
-            if (carte[newPosY, newPosX] == 'H')
+            /*if (carte[newPosY, newPosX] == 'H')
             {
                 LancerCombatSiRencontrePokemon(carte);
-            }
+            }*/
 
             posY = newPosY;
             posX = newPosX;
@@ -285,7 +286,7 @@ class Program
         Thread.Sleep(durationMilliseconds);
     }
 
-    static void LancerCombatSiRencontrePokemon(char[,] carte)
+    /*static void LancerCombatSiRencontrePokemon(char[,] carte)
     {
         Random random = new Random();
 
@@ -392,22 +393,8 @@ class Program
             Nom = nom;
             Puissance = puissance;
         }
-    }
+    }*/
 
-    public class BibliothequePokemon
-    {
-        public static List<Pokemon> GetListePokemon()
-        {
-            List<Pokemon> listePokemon = new List<Pokemon>();
-
-            // Ajoutez vos Pokémon ici
-            listePokemon.Add(new Pokemon("Pikachu", 100, new List<Attaque> { new Attaque("Éclair", 20), new Attaque("Queue de fer", 15) }));
-            listePokemon.Add(new Pokemon("Bulbizarre", 120, new List<Attaque> { new Attaque("Fouet lianes", 18), new Attaque("Vampigraine", 12) }));
-            // ... Ajoutez d'autres Pokémon de la même manière
-
-            return listePokemon;
-        }
-    }
 
 
     //------------------------------------------------SAVE------------------------------------------------

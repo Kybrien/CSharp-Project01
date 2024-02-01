@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-
+using static Program;
+using fight;
 namespace fight
 {
         public class Pokemon
@@ -83,7 +84,7 @@ namespace fight
             private double accuracy;
             private string category; // "Physical", "Special", or "Status"
 
-            public Ability(string name, int power, double accuracy, string category)
+            public Ability(string name, int power, int accuracy, string category)
             {
                 this.name = name;
                 this.power = power;
@@ -99,7 +100,11 @@ namespace fight
             public string GetName() => name;
             public int GetPower() => power;
             public double GetAccuracy() => accuracy;
-        }
+            public string GetCategory() => category;
+
+        
+    }
+
 
         public class Move
         {
@@ -146,7 +151,7 @@ namespace fight
     }
 
 
-public class Program
+    public class listPoke
     {
         // Méthode pour lire les Pokémon à partir d'un fichier
         public static List<Pokemon> ReadPokemonFromFile(string filePath)
@@ -178,10 +183,97 @@ public class Program
 
             return pokemons;
         }
-
-        public static void txtest(string[] args)
+        public static List<Ability> ReadAbilitiesFromFile(string filePath)
         {
-            string filePath = "./CSharp-Project01/Pokedico.txt"; // Remplacez par le chemin réel de votre fichier
+            List<Ability> abilities = new List<Ability>();
+
+            try
+            {
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] parts = line.Split(',');
+                        if (parts.Length == 4)
+                        {
+                            string name = parts[0].Trim();
+                            int power = int.Parse(parts[1].Trim());
+                            int accuracy = int.Parse(parts[2].Trim());
+                            string category = parts[3].Trim();
+
+                            abilities.Add(new Ability(name, power, accuracy, category));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while reading the abilities file: {ex.Message}");
+            }
+
+            return abilities;
+        }
+
+        /*public class BibliothequePokemon
+        {
+            public static List<Pokemon> GetListePokemon()
+            {
+                List<Pokemon> listePokemon = new List<Pokemon>();
+
+                // Ajoutez vos Pokémon ici
+                listePokemon.Add(new Pokemon("Pikachu", 100, new List<Attaque> { new Attaque("Éclair", 20), new Attaque("Queue de fer", 15) }));
+                listePokemon.Add(new Pokemon("Bulbizarre", 120, new List<Attaque> { new Attaque("Fouet lianes", 18), new Attaque("Vampigraine", 12) }));
+                // ... Ajoutez d'autres Pokémon de la même manière
+
+                return listePokemon;
+            }
+        }*/
+        public static void createPokefile(string[] args)
+        {
+            string pokemonFilePath = "Pokedico.txt"; // Chemin du fichier des Pokémon
+            string abilitiesFilePath = "Abilities.txt"; // Chemin du fichier des capacités
+
+            List<Pokemon> pokemons = ReadPokemonFromFile(pokemonFilePath);
+            List<Ability> abilities = ReadAbilitiesFromFile(abilitiesFilePath);
+
+            // Pour cet exemple, nous supposerons que chaque Pokémon a accès aux 4 premières capacités de la liste des capacités
+            // Cette partie peut être adaptée pour correspondre à la réalité de votre jeu
+            foreach (var pokemon in pokemons)
+            {
+                CreatePokemonFile(pokemon, abilities.GetRange(0, Math.Min(4, abilities.Count)));
+            }
+        }
+
+        public static void CreatePokemonFile(Pokemon pokemon, List<Ability> abilities)
+        {
+            string fileName = $"Pokemon_{pokemon.GetName}.txt"; // Nom du fichier basé sur le nom du Pokémon
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                // Écriture des statistiques du Pokémon
+                writer.WriteLine($"Name: {pokemon.GetName}");
+                writer.WriteLine($"HP: {pokemon.GetHp}");
+                writer.WriteLine($"Type: {pokemon.GetType}");
+
+                writer.WriteLine($"Attack: {pokemon.GetAttack}");
+                writer.WriteLine($"Defense: {pokemon.GetDefense}");
+                writer.WriteLine($"Special Attack: {pokemon.GetSpecialAttack}");
+                writer.WriteLine($"Special Defense: {pokemon.GetSpecialDefense}");
+                writer.WriteLine($"Speed: {pokemon.GetSpeed}");
+
+                // Écriture des capacités du Pokémon
+                writer.WriteLine("\nAbilities:");
+                foreach (var ability in abilities)
+                {
+                    writer.WriteLine($"- {ability.GetName} (Power: {ability.GetPower}, Accuracy: {ability.GetAccuracy}, Category: {ability.GetCategory})");
+                }
+            }
+
+            Console.WriteLine($"Fichier créé pour {pokemon.GetName}.");
+        }
+        public static void txtest()
+        {
+            string filePath = "Pokedico.txt"; // Remplacez par le chemin réel de votre fichier
             List<Pokemon> pokemons = ReadPokemonFromFile(filePath);
 
             // Affichage des Pokémon pour vérifier la lecture du fichier
@@ -191,7 +283,7 @@ public class Program
                 Console.WriteLine(); // Pour ajouter une ligne vide entre les Pokémon
             }
 
-            // Ici, vous pouvez ajouter la logique pour initialiser le jeu, choisir des Pokémon, etc.
+
         }
     }
 
