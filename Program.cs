@@ -1,27 +1,31 @@
 ﻿using System;
 using System.Threading;
+using Display;
+using SaveEditor;
 
 class Program
 {
     static bool quit = false;
-    static int posX = 1, posY = 1;
+    public static int posX = 1, posY = 1;
+    static char[,] currentMap = { };
 
     static void Main()
     {
         InitializeConsole();
 
-        char[,] carte = InitializeCarte();
-        LoadGame();
+        // Initialiser la carte actuelle
+        currentMap = Map.InitMap1();
+        Save.LoadGame();
 
         do
         {
             Console.Clear();
-            main_menu();
+            Menu.main_menu();
 
             Console.Write("Choisissez une option (1-5): ");
             char choice = Console.ReadKey().KeyChar;
 
-            ProcessChoice(choice, carte);
+            ProcessChoice(choice, currentMap);
 
         } while (!quit);
     }
@@ -30,37 +34,9 @@ class Program
     {
         if (OperatingSystem.IsWindows())
         {
-            Console.WindowWidth = 20;
+            Console.WindowWidth = 60;
             Console.WindowHeight = 20;
         }
-    }
-
-    static char[,] InitializeCarte()
-    {
-        char[,] carte =
-        {
-            {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
-            {'#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#'},
-            {'#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#', '#', ' ', ' ', '#', ' ', '#'},
-            {'#', ' ', ' ', '#', ' ', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#'},
-            {'#', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', ' ', '#', ' ', '#', ' ', ' ', '#'},
-            {'#', ' ', ' ', '#', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', '#'},
-            {'#', ' ', ' ', '#', '#', ' ', '#', ' ', '#', '#', '#', '#', '#', '#', '#', ' ', '#', '#', '#', '#'},
-            {'#', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', '#'},
-            {'#', ' ', ' ', ' ', '#', ' ', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', '#'},
-            {'#', ' ', ' ', ' ', '#', ' ', ' ', '#', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', '#'},
-            {'#', 'H', 'H', 'H', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', ' ', ' ', '#', ' ', ' ', '#'},
-            {'#', 'H', 'H', 'H', '#', ' ', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#', ' ', '#', '#'},
-            {'#', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
-            {'#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
-            {'#', ' ', ' ', ' ', '#', ' ', '#', '#', '#', '#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'},
-            {'#', ' ', '#', '#', '#', ' ', '#', ' ', ' ', '#', ' ', ' ', ' ', '#', '#', '#', '#', ' ', ' ', '#'},
-            {'#', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#'},
-            {'#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#'},
-            {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
-        };
-
-        return carte;
     }
 
     static void ProcessChoice(char choice, char[,] carte)
@@ -72,76 +48,103 @@ class Program
                 ShowLoadingScreen("Lancement de la partie..", 500);
                 ShowLoadingScreen("Lancement de la partie...", 500);
                 Console.Clear();
-                PlayGame(carte);
+                PlayGame();
                 break;
-
             case '2':
                 ProcessDifficultyChoice();
                 break;
-
             case '3':
                 Console.WriteLine("\nVous avez choisi l'option 3");
                 break;
-
             case '4':
-                DeleteSave();
+                Save.DeleteSave();
                 posY = 1;
                 posX = 1;
                 ShowLoadingScreen("Suppression de la partie.", 500);
                 ShowLoadingScreen("Suppression de la partie..", 500);
                 ShowLoadingScreen("Suppression de la partie...", 500);
                 break;
-
             case '5':
                 Console.WriteLine("\nAu revoir !");
-                SaveGame();
+                Save.SaveGame();
                 Console.WriteLine("\nAu revoir !");
                 quit = true;
                 break;
-
-            case (char)ConsoleKey.Escape
+            case (char)ConsoleKey.Escape:
                 quit = true;
                 break;
-
             default:
                 Console.WriteLine("\nChoix invalide. Veuillez choisir une option valide.");
                 break;
         }
-
-/*        // Ajouter une pause après l'affichage du menu principal
-        if (!quit)
-        {
-            Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-            Console.ReadKey(true);
-        }*/
     }
 
-    static void PlayGame(char[,] carte)
+
+    static void PlayGame()
     {
-        AfficherCarte(carte);
+        AfficherCarte(currentMap);
 
         ConsoleKeyInfo keyInfo;
         do
         {
             keyInfo = Console.ReadKey(true);
-            MovePlayer(keyInfo, carte);
+            MovePlayer(keyInfo, currentMap);
             Console.Clear();
-            AfficherCarte(carte);
+            AfficherCarte(currentMap);
 
         } while (keyInfo.Key != ConsoleKey.Escape);
+    }
+
+    static char[,] ChangeMap(char[,] carte)
+    {
+        char[,] newMap = carte;
+
+        if (AreEqual(carte, Map.InitMap1()))
+        {
+            Console.Clear();
+            ShowLoadingScreen("Map suivante !", 500);
+            newMap = Map.InitMap2();
+            AfficherCarte(newMap);
+            currentMap = newMap;
+        }
+
+
+        return newMap;
+    }
+
+
+    static bool AreEqual(char[,] array1, char[,] array2)
+    {
+        if (array1.GetLength(0) != array2.GetLength(0) || array1.GetLength(1) != array2.GetLength(1))
+        {
+            return false;
+        }
+
+        for (int i = 0; i < array1.GetLength(0); i++)
+        {
+            for (int j = 0; j < array1.GetLength(1); j++)
+            {
+                if (array1[i, j] != array2[i, j])
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     static void MovePlayer(ConsoleKeyInfo keyInfo, char[,] carte)
     {
         switch (keyInfo.Key)
         {
-            case ConsoleKey.W:
+            case ConsoleKey.Z:
                 MovePlayerIfValid(-1, 0, carte);
                 break;
             case ConsoleKey.S:
                 MovePlayerIfValid(1, 0, carte);
                 break;
-            case ConsoleKey.A:
+            case ConsoleKey.Q:
                 MovePlayerIfValid(0, -1, carte);
                 break;
             case ConsoleKey.D:
@@ -149,8 +152,8 @@ class Program
                 break;
             case ConsoleKey.Escape:
                 Console.Clear();
-                SaveGame();
-                main_menu();
+                Save.SaveGame();
+                Menu.main_menu();
                 break;
         }
     }
@@ -166,44 +169,54 @@ class Program
             if (carte[newPosY, newPosX] == 'H')
             {
                 LancerCombatSiRencontrePokemon(carte);
+         
             }
 
+            // On change de map si on rencontre un symbole de changement de map
+            if (carte[newPosY, newPosX] == '►')
+            {
+               carte = ChangeMap(carte);
+               AfficherCarte(carte);
+            }
+            posY = newPosY;
+            posX = newPosX;
+
+            if (carte[newPosY, newPosX] == '◄')
+            {
+                carte = ChangeMap(carte);
+                AfficherCarte(carte);
+            }
+            posY = newPosY;
+            posX = newPosX;
+
+            if (carte[newPosY, newPosX] == '▲')
+            {
+                carte = ChangeMap(carte);
+                AfficherCarte(carte);
+            }
+            posY = newPosY;
+            posX = newPosX;
+
+            if (carte[newPosY, newPosX] == '▼')
+            {
+                carte = ChangeMap(carte);
+                AfficherCarte(carte);
+            }
             posY = newPosY;
             posX = newPosX;
         }
     }
 
+
     static bool IsValidMove(int y, int x, char[,] carte)
     {
-        return y >= 0 && y < carte.GetLength(0) && x >= 0 && x < carte.GetLength(1) && carte[y, x] == ' ' || carte[y, x] == 'H';
-    }
-
-    static void main_menu()
-    {
-        Console.Clear();
-        Console.WriteLine("╔════════════════════════╗");
-        Console.WriteLine("║          Menu          ║");
-        Console.WriteLine("╠════════════════════════╣");
-        Console.WriteLine("║ 1.  Lancer             ║");
-        Console.WriteLine("║ 2.  Difficulte         ║");
-        Console.WriteLine("║ 3.  Options            ║");
-        Console.WriteLine("║ 4.  Supprimer Partie   ║");
-        Console.WriteLine("║ 5.  Quitter            ║");
-        Console.WriteLine("╚════════════════════════╝");
+        return y >= 0 && y < carte.GetLength(0) && x >= 0 && x < carte.GetLength(1) && carte[y, x] == ' ' || carte[y, x] == 'H' || carte[y, x] == '►' || carte[y, x] == '◄' || carte[y, x] == '▲' || carte[y, x] == '▼';
     }
 
     static void ProcessDifficultyChoice()
     {
-        Console.Clear();
-        Console.WriteLine("╔════════════════════════╗");
-        Console.WriteLine("║       Difficulte       ║");
-        Console.WriteLine("╠════════════════════════╣");
-        Console.WriteLine("║ 1.  Facile             ║");
-        Console.WriteLine("║ 2.  Moyen              ║");
-        Console.WriteLine("║ 3.  Difficile          ║");
-        Console.WriteLine("║ 4.  --RETOUR--         ║");
-        Console.WriteLine("╚════════════════════════╝");
 
+        Menu.difficulty_menu();
         Console.Write("\nChoisissez une option (1-4): ");
         char choice_difficulty = Console.ReadKey().KeyChar;
 
@@ -222,10 +235,10 @@ class Program
             case '3':
                 ShowLoadingScreen("Difficulte difficile selectionnée.", 500);
                 ShowLoadingScreen("Difficulte difficile selectionnée..", 500);
-                ShowLoadingScreen("Difficulte difficile selectionnée..", 500);
+                ShowLoadingScreen("Difficulte difficile selectionnée...", 500);
                 break;
             case '4':
-                main_menu();
+                Menu.main_menu();
                 break;
             default:
                 Console.WriteLine("Difficulte actuelle : Aucune");
@@ -272,7 +285,7 @@ class Program
     }
 
 
-
+    // Combat Pokemon
     static void ShowLoadingScreen(string message, int durationMilliseconds)
     {
         Console.Clear();
@@ -402,82 +415,6 @@ class Program
             // ... Ajoutez d'autres Pokémon de la même manière
 
             return listePokemon;
-        }
-    }
-
-
-    //------------------------------------------------SAVE------------------------------------------------
-    static void SaveGame()
-    {
-        string filePath = "save.txt";
-
-        try
-        {
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
-                writer.WriteLine(posX);
-                writer.WriteLine(posY);
-            }
-
-            Console.WriteLine("Partie sauvegardée avec succès.");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Erreur lors de la sauvegarde de la : " + ex.Message);
-        }
-    }
-
-    static void LoadGame()
-    {
-        string filePath = "save.txt";
-
-        try
-        {
-            if (File.Exists(filePath))
-            {
-                using (StreamReader reader = new StreamReader(filePath))
-                {
-                    if (int.TryParse(reader.ReadLine(), out posX) && int.TryParse(reader.ReadLine(), out posY))
-                    {
-                        Console.WriteLine("Partie chargée avec succès. Position actuelle : ({",posX,"}, {",posY,"})");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Erreur lors de la lecture du fichier de sauvegarde.");
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine("Aucun fichier de sauvegarde trouvé.");
-                Console.WriteLine("Creation d'une nouvelle partie...");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Erreur lors du chargement : " + ex.Message);
-        }
-    }
-
-    static void DeleteSave()
-    {
-        string filePath = "save.txt";
-
-        try
-        {
-            if (File.Exists(filePath))
-            {
-                File.Delete(filePath);
-                Console.WriteLine("Sauvegarde supprimée avec succès.");
-            }
-            else
-            {
-                Console.WriteLine("Aucune sauvegarde trouvée.");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Erreur lors de la suppression de la sauvegarde : " + ex.Message);
         }
     }
 }
