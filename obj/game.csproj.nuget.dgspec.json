@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\OneDrive\\Bureau\\GC\\c #\\CSharp-Project01\\game.csproj": {}
+    "C:\\Users\\gandre\\Desktop\\c#\\CSharp-Project01\\game.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\OneDrive\\Bureau\\GC\\c #\\CSharp-Project01\\game.csproj": {
+    "C:\\Users\\gandre\\Desktop\\c#\\CSharp-Project01\\game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\OneDrive\\Bureau\\GC\\c #\\CSharp-Project01\\game.csproj",
+        "projectUniqueName": "C:\\Users\\gandre\\Desktop\\c#\\CSharp-Project01\\game.csproj",
         "projectName": "game",
-        "projectPath": "C:\\Users\\admin\\OneDrive\\Bureau\\GC\\c #\\CSharp-Project01\\game.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\OneDrive\\Bureau\\GC\\c #\\CSharp-Project01\\obj\\",
+        "projectPath": "C:\\Users\\gandre\\Desktop\\c#\\CSharp-Project01\\game.csproj",
+        "packagesPath": "C:\\Users\\gandre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gandre\\Desktop\\c#\\CSharp-Project01\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gandre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.418\\RuntimeIdentifierGraph.json"
         }
       }
     }
