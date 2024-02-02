@@ -1,0 +1,10 @@
+Name: Arbok
+HP: 60
+Type: Poison
+Attack: 85
+Defense: 69
+Special Attack: 65
+Special Defense: 79
+Speed: 80
+
+Abilities:

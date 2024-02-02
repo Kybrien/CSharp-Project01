@@ -1,0 +1,10 @@
+Name: Charmeleon
+HP: 58
+Type: Fire
+Attack: 64
+Defense: 58
+Special Attack: 80
+Special Defense: 65
+Speed: 80
+
+Abilities:

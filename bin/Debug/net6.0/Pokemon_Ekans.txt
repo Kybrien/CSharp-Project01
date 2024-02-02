@@ -1,0 +1,10 @@
+Name: Ekans
+HP: 35
+Type: Poison
+Attack: 60
+Defense: 44
+Special Attack: 40
+Special Defense: 54
+Speed: 55
+
+Abilities:

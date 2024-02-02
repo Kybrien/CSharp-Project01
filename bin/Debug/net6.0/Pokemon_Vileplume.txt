@@ -1,0 +1,10 @@
+Name: Vileplume
+HP: 75
+Type: Grass/Poison
+Attack: 80
+Defense: 85
+Special Attack: 110
+Special Defense: 90
+Speed: 50
+
+Abilities:

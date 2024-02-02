@@ -1,0 +1,10 @@
+Name: Nidoking
+HP: 81
+Type: Poison/Ground
+Attack: 102
+Defense: 77
+Special Attack: 85
+Special Defense: 75
+Speed: 85
+
+Abilities:

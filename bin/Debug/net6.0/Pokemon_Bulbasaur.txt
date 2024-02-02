@@ -1,0 +1,10 @@
+Name: Bulbasaur
+HP: 45
+Type: Grass/Poison
+Attack: 49
+Defense: 49
+Special Attack: 65
+Special Defense: 65
+Speed: 45
+
+Abilities:

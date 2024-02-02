@@ -1,0 +1,10 @@
+Name: Pikachu
+HP: 35
+Type: Electric
+Attack: 55
+Defense: 40
+Special Attack: 50
+Special Defense: 50
+Speed: 90
+
+Abilities:

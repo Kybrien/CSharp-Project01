@@ -1,0 +1,10 @@
+Name: Pidgeot
+HP: 83
+Type: Normal/Flying
+Attack: 80
+Defense: 75
+Special Attack: 70
+Special Defense: 70
+Speed: 101
+
+Abilities:

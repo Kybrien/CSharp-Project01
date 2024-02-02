@@ -1,0 +1,10 @@
+Name: Paras
+HP: 35
+Type: Bug/Grass
+Attack: 70
+Defense: 55
+Special Attack: 45
+Special Defense: 55
+Speed: 25
+
+Abilities:

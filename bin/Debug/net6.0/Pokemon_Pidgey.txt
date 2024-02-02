@@ -1,0 +1,10 @@
+Name: Pidgey
+HP: 40
+Type: Normal/Flying
+Attack: 45
+Defense: 40
+Special Attack: 35
+Special Defense: 35
+Speed: 56
+
+Abilities:

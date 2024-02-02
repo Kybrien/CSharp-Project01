@@ -1,0 +1,10 @@
+Name: Diglett
+HP: 10
+Type: Ground
+Attack: 55
+Defense: 25
+Special Attack: 35
+Special Defense: 45
+Speed: 95
+
+Abilities:

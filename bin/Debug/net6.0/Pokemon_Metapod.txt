@@ -1,0 +1,10 @@
+Name: Metapod
+HP: 50
+Type: Bug
+Attack: 20
+Defense: 55
+Special Attack: 25
+Special Defense: 25
+Speed: 30
+
+Abilities:

@@ -1,0 +1,10 @@
+Name: Parasect
+HP: 60
+Type: Bug/Grass
+Attack: 95
+Defense: 80
+Special Attack: 60
+Special Defense: 80
+Speed: 30
+
+Abilities:

@@ -1,0 +1,10 @@
+Name: Squirtle
+HP: 44
+Type: Water
+Attack: 48
+Defense: 65
+Special Attack: 50
+Special Defense: 64
+Speed: 43
+
+Abilities:

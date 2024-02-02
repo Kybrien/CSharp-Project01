@@ -14,7 +14,7 @@ class Program
 
         char[,] carte = InitializeCarte();
         LoadGame();
-
+        
         do
         {
             Console.Clear();
@@ -22,7 +22,6 @@ class Program
 
             Console.Write("Choisissez une option (1-5): ");
             char choice = Console.ReadKey().KeyChar;
-
             ProcessChoice(choice, carte);
 
         } while (!quit);
@@ -80,6 +79,7 @@ class Program
 
             case '2':
                 ProcessDifficultyChoice();
+                listPoke.createPokefile();
                 break;
 
             case '3':
@@ -131,7 +131,7 @@ class Program
             MovePlayer(keyInfo, carte);
             Console.Clear();
             AfficherCarte(carte);
-            listPoke.txtest();
+
 
         } while (keyInfo.Key != ConsoleKey.Escape);
     }

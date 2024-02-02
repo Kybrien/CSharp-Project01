@@ -36,7 +36,7 @@ namespace fight
             public void UsePotion()
             {
                 hp += 10;
-                Console.WriteLine("Vous avez soigné 10 PV.");
+                Console.WriteLine("Vous avez soigné 30 PV.");
                 Potion--;
                 Console.WriteLine($"Il vous reste {Potion} potions.");
             }
@@ -64,11 +64,13 @@ namespace fight
 
             public void DisplayStats()
             {
-                Console.WriteLine($"{name} - \nHP: {hp}\nAttack: {attack}\nDefense: {defense}\nSpecial Attack: {specialAttack}\nSpecial Defense: {specialDefense}\nSpeed: {speed}");
+                Console.WriteLine($"{name} - \nHP: {hp}\nType : {type}\nAttack: {attack}\nDefense: {defense}\nSpecial Attack: {specialAttack}\nSpecial Defense: {specialDefense}\nSpeed: {speed}");
             }
 
             // Accessor methods
             public string GetName() => name;
+            public string GetType() => type;
+
             public int GetHp() => hp;
             public int GetSpeed() => speed;
             public int GetAttack() => attack;
@@ -229,7 +231,7 @@ namespace fight
                 return listePokemon;
             }
         }*/
-        public static void createPokefile(string[] args)
+        public static void createPokefile()
         {
             string pokemonFilePath = "Pokedico.txt"; // Chemin du fichier des Pokémon
             string abilitiesFilePath = "Abilities.txt"; // Chemin du fichier des capacités
@@ -237,8 +239,7 @@ namespace fight
             List<Pokemon> pokemons = ReadPokemonFromFile(pokemonFilePath);
             List<Ability> abilities = ReadAbilitiesFromFile(abilitiesFilePath);
 
-            // Pour cet exemple, nous supposerons que chaque Pokémon a accès aux 4 premières capacités de la liste des capacités
-            // Cette partie peut être adaptée pour correspondre à la réalité de votre jeu
+         
             foreach (var pokemon in pokemons)
             {
                 CreatePokemonFile(pokemon, abilities.GetRange(0, Math.Min(4, abilities.Count)));
@@ -247,29 +248,33 @@ namespace fight
 
         public static void CreatePokemonFile(Pokemon pokemon, List<Ability> abilities)
         {
-            string fileName = $"Pokemon_{pokemon.GetName}.txt"; // Nom du fichier basé sur le nom du Pokémon
+            string fileName = $"Pokemon_{pokemon.GetName()}.txt"; // Nom du fichier basé sur le nom du Pokémon
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 // Écriture des statistiques du Pokémon
-                writer.WriteLine($"Name: {pokemon.GetName}");
-                writer.WriteLine($"HP: {pokemon.GetHp}");
-                writer.WriteLine($"Type: {pokemon.GetType}");
+                writer.WriteLine($"Name: {pokemon.GetName()}");
+                writer.WriteLine($"HP: {pokemon.GetHp()}");
+                writer.WriteLine($"Type: {pokemon.GetType()}");
 
-                writer.WriteLine($"Attack: {pokemon.GetAttack}");
-                writer.WriteLine($"Defense: {pokemon.GetDefense}");
-                writer.WriteLine($"Special Attack: {pokemon.GetSpecialAttack}");
-                writer.WriteLine($"Special Defense: {pokemon.GetSpecialDefense}");
-                writer.WriteLine($"Speed: {pokemon.GetSpeed}");
+                writer.WriteLine($"Attack: {pokemon.GetAttack()}");
+                writer.WriteLine($"Defense: {pokemon.GetDefense()}");
+                writer.WriteLine($"Special Attack: {pokemon.GetSpecialAttack()}");
+                writer.WriteLine($"Special Defense: {pokemon.GetSpecialDefense()}");
+                writer.WriteLine($"Speed: {pokemon.GetSpeed()}");
 
                 // Écriture des capacités du Pokémon
                 writer.WriteLine("\nAbilities:");
+                Console.WriteLine(abilities.Count);
                 foreach (var ability in abilities)
                 {
-                    writer.WriteLine($"- {ability.GetName} (Power: {ability.GetPower}, Accuracy: {ability.GetAccuracy}, Category: {ability.GetCategory})");
+                   
+                    Console.WriteLine($"- {ability.GetName()} (Power: {ability.GetPower()}, Accuracy: {ability.GetAccuracy()}, Category: {ability.GetCategory()})");
+                    writer.WriteLine($"- {ability.GetName()} (Power: {ability.GetPower()}, Accuracy: {ability.GetAccuracy()}, Category: {ability.GetCategory()})");
                 }
+            
             }
 
-            Console.WriteLine($"Fichier créé pour {pokemon.GetName}.");
+            Console.WriteLine($"Fichier créé pour {pokemon.GetName()}.");
         }
         public static void txtest()
         {

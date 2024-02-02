@@ -1,0 +1,10 @@
+Name: Kakuna
+HP: 45
+Type: Bug/Poison
+Attack: 25
+Defense: 50
+Special Attack: 25
+Special Defense: 25
+Speed: 35
+
+Abilities:

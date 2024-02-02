@@ -1,0 +1,10 @@
+Name: Nidorino
+HP: 61
+Type: Poison
+Attack: 72
+Defense: 57
+Special Attack: 55
+Special Defense: 55
+Speed: 65
+
+Abilities:

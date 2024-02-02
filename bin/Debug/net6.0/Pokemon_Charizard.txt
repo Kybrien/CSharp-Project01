@@ -1,0 +1,10 @@
+Name: Charizard
+HP: 78
+Type: Fire/Flying
+Attack: 84
+Defense: 78
+Special Attack: 109
+Special Defense: 85
+Speed: 100
+
+Abilities:

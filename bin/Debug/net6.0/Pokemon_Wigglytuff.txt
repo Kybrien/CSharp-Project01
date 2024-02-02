@@ -1,0 +1,10 @@
+Name: Wigglytuff
+HP: 140
+Type: Normal/Fairy
+Attack: 70
+Defense: 45
+Special Attack: 85
+Special Defense: 50
+Speed: 45
+
+Abilities:

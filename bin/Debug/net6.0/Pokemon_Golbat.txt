@@ -1,0 +1,10 @@
+Name: Golbat
+HP: 75
+Type: Poison/Flying
+Attack: 80
+Defense: 70
+Special Attack: 65
+Special Defense: 75
+Speed: 90
+
+Abilities:

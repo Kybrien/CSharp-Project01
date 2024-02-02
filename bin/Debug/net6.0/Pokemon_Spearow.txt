@@ -1,0 +1,10 @@
+Name: Spearow
+HP: 40
+Type: Normal/Flying
+Attack: 60
+Defense: 30
+Special Attack: 31
+Special Defense: 31
+Speed: 70
+
+Abilities:

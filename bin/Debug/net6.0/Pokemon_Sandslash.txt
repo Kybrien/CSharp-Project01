@@ -1,0 +1,10 @@
+Name: Sandslash
+HP: 75
+Type: Ground
+Attack: 100
+Defense: 110
+Special Attack: 45
+Special Defense: 55
+Speed: 65
+
+Abilities:

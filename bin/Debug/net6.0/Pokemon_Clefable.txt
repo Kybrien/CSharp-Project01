@@ -1,0 +1,10 @@
+Name: Clefable
+HP: 95
+Type: Fairy
+Attack: 70
+Defense: 73
+Special Attack: 95
+Special Defense: 90
+Speed: 60
+
+Abilities:

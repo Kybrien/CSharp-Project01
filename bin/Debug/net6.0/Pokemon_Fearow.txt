@@ -1,0 +1,10 @@
+Name: Fearow
+HP: 65
+Type: Normal/Flying
+Attack: 90
+Defense: 65
+Special Attack: 61
+Special Defense: 61
+Speed: 100
+
+Abilities:

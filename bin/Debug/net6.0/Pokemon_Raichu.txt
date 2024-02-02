@@ -1,0 +1,10 @@
+Name: Raichu
+HP: 60
+Type: Electric
+Attack: 90
+Defense: 55
+Special Attack: 90
+Special Defense: 80
+Speed: 110
+
+Abilities:

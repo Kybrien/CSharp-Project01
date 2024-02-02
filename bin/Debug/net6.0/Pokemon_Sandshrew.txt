@@ -1,0 +1,10 @@
+Name: Sandshrew
+HP: 50
+Type: Ground
+Attack: 75
+Defense: 85
+Special Attack: 20
+Special Defense: 30
+Speed: 40
+
+Abilities:

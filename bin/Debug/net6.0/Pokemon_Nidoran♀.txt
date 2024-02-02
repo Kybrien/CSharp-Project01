@@ -1,0 +1,10 @@
+Name: Nidoran♀
+HP: 55
+Type: Poison
+Attack: 47
+Defense: 52
+Special Attack: 40
+Special Defense: 40
+Speed: 41
+
+Abilities:

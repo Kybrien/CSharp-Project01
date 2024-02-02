@@ -1,0 +1,10 @@
+Name: Weedle
+HP: 40
+Type: Bug/Poison
+Attack: 35
+Defense: 30
+Special Attack: 20
+Special Defense: 20
+Speed: 50
+
+Abilities:

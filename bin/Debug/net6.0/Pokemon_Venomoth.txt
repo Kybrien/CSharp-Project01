@@ -1,0 +1,10 @@
+Name: Venomoth
+HP: 70
+Type: Bug/Poison
+Attack: 65
+Defense: 60
+Special Attack: 90
+Special Defense: 75
+Speed: 90
+
+Abilities:

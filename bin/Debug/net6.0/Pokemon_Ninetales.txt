@@ -1,0 +1,10 @@
+Name: Ninetales
+HP: 73
+Type: Fire
+Attack: 76
+Defense: 75
+Special Attack: 81
+Special Defense: 100
+Speed: 100
+
+Abilities:
