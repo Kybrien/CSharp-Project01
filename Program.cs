@@ -11,6 +11,7 @@ class Program
     public static bool quit = false;
     public static int posX = 1, posY = 1;
     public static char[,] currentMap = { };
+    public static int currentMapIndex = 0;
 
     static void Main()
     {
@@ -18,6 +19,7 @@ class Program
 
         // Initialiser la carte actuelle
         currentMap = Map.InitMap1();
+        currentMapIndex = 0;
         Save.LoadGame();
 
         do

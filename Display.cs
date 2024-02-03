@@ -80,6 +80,45 @@ namespace Display
             // On reset la couleur
             Console.ResetColor();
         }
+        public static void ChangeMap()
+        {
+            ResetPlayerPosition();
+            switch (Program.currentMapIndex)
+            {
+                case 0:
+                    Program.currentMap = Map.InitMap1();
+                    break;
+                case 1:
+                    Program.currentMap = Map.InitMap2();
+                    break;
+                case 2:
+                    Program.currentMap = Map.InitMap3();
+                    break;
+                case 3:
+                    Program.currentMap = Map.InitMap4();
+                    break;
+                case 4:
+                    Program.currentMap = Map.InitMap5();
+                    break;
+            }
+            
+            Map.AfficherCarte(Program.currentMap); // Afficher la nouvelle carte
+        }
+
+        private static void ResetPlayerPosition()
+        {
+            if (Program.currentMap[Program.posY, Program.posX] == '►')
+            {
+                Program.posX = 1;
+                Program.posY = 9;
+            }
+            else if (Program.currentMap[Program.posY, Program.posX] == '◄')
+            {
+                Program.posX = 18;
+                Program.posY = 9;
+            }
+            // Réinitialiser la position du joueur à gauche, mais pas sur le rebord
+        }
 
         public static char[,] InitMap1()
         {

@@ -105,6 +105,16 @@ namespace InputLoader
                     Menu.main_menu();
                     break;
             }
+            if (carte[Program.posY, Program.posX] == '►')
+            {
+                Program.currentMapIndex++; // Augmente l'indice de la carte
+                Map.ChangeMap();
+            }
+            else if (carte[Program.posY, Program.posX] == '◄')
+            {
+                Program.currentMapIndex--; // Diminue l'indice de la carte
+                Map.ChangeMap();
+            }
         }
 
         private static void MovePlayerIfValid(int deltaY, int deltaX, char[,] carte)
