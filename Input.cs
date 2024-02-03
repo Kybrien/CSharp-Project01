@@ -132,16 +132,6 @@ namespace InputLoader
                     carte = Map.ChangeMap(carte);
                     Map.AfficherCarte(carte);
                 }
-                if (carte[newPosY, newPosX] == '▲')
-                {
-                    carte = Map.ChangeMap(carte);
-                    Map.AfficherCarte(carte);
-                }
-                if (carte[newPosY, newPosX] == '▼')
-                {
-                    carte = Map.ChangeMap(carte);
-                    Map.AfficherCarte(carte);
-                }
                 Program.posY = newPosY;
                 Program.posX = newPosX;
             }
