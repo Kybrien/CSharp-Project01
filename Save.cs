@@ -7,7 +7,7 @@ namespace SaveEditor
     {
         public static void SaveGame()
         {
-            string filePath = "save.txt";
+            string filePath = Path.Combine(Environment.CurrentDirectory, "save.txt");
 
             try
             {
@@ -21,14 +21,14 @@ namespace SaveEditor
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erreur lors de la sauvegarde de la : " + ex.Message);
+                Console.WriteLine("Erreur lors de la sauvegarde : " + ex.Message);
             }
         }
 
         //Charger la sauvegarde
         public static void LoadGame()
         {
-            string filePath = "save.txt";
+            string filePath = Path.Combine(Environment.CurrentDirectory, "save.txt");
 
             try
             {
@@ -38,7 +38,7 @@ namespace SaveEditor
                     {
                         if (int.TryParse(reader.ReadLine(), out Program.posX) && int.TryParse(reader.ReadLine(), out Program.posY))
                         {
-                            Console.WriteLine("Partie chargée avec succès. Position actuelle : ({", Program.posX, "}, {", Program.posY, "})");
+                            Console.WriteLine($"Partie chargée avec succès. Position actuelle : ({Program.posX}, {Program.posY})");
                         }
                         else
                         {

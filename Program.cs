@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Threading;
+using System.Collections.Generic;
+using System.IO;
 using Display;
 using SaveEditor;
+using InputLoader;
 
 class Program
 {
-    static bool quit = false;
+    public static bool quit = false;
     public static int posX = 1, posY = 1;
-    static char[,] currentMap = { };
+    public static char[,] currentMap = { };
 
     static void Main()
     {
@@ -25,7 +28,7 @@ class Program
             Console.Write("Choisissez une option (1-5): ");
             char choice = Console.ReadKey().KeyChar;
 
-            ProcessChoice(choice, currentMap);
+            Input.ProcessChoice(choice, currentMap);
 
         } while (!quit);
     }
@@ -37,264 +40,29 @@ class Program
             Console.WindowWidth = 60;
             Console.WindowHeight = 20;
         }
-    }
+    }  
 
-    static void ProcessChoice(char choice, char[,] carte)
+    public static void PlayGame()
     {
-        switch (choice)
-        {
-            case '1':
-                ShowLoadingScreen("Lancement de la partie.", 500);
-                ShowLoadingScreen("Lancement de la partie..", 500);
-                ShowLoadingScreen("Lancement de la partie...", 500);
-                Console.Clear();
-                PlayGame();
-                break;
-            case '2':
-                ProcessDifficultyChoice();
-                break;
-            case '3':
-                Console.WriteLine("\nVous avez choisi l'option 3");
-                break;
-            case '4':
-                Save.DeleteSave();
-                posY = 1;
-                posX = 1;
-                ShowLoadingScreen("Suppression de la partie.", 500);
-                ShowLoadingScreen("Suppression de la partie..", 500);
-                ShowLoadingScreen("Suppression de la partie...", 500);
-                break;
-            case '5':
-                Console.WriteLine("\nAu revoir !");
-                Save.SaveGame();
-                Console.WriteLine("\nAu revoir !");
-                quit = true;
-                break;
-            case (char)ConsoleKey.Escape:
-                quit = true;
-                break;
-            default:
-                Console.WriteLine("\nChoix invalide. Veuillez choisir une option valide.");
-                break;
-        }
-    }
-
-
-    static void PlayGame()
-    {
-        AfficherCarte(currentMap);
+        Map.AfficherCarte(currentMap);
 
         ConsoleKeyInfo keyInfo;
         do
         {
             keyInfo = Console.ReadKey(true);
-            MovePlayer(keyInfo, currentMap);
+            Input.MovePlayer(keyInfo, currentMap);
             Console.Clear();
-            AfficherCarte(currentMap);
+            Map.AfficherCarte(currentMap);
 
         } while (keyInfo.Key != ConsoleKey.Escape);
     }
-
-    static char[,] ChangeMap(char[,] carte)
-    {
-        char[,] newMap = carte;
-
-        if (AreEqual(carte, Map.InitMap1()))
-        {
-            Console.Clear();
-            ShowLoadingScreen("Map suivante !", 500);
-            newMap = Map.InitMap2();
-            AfficherCarte(newMap);
-            currentMap = newMap;
-        }
+    
 
 
-        return newMap;
-    }
 
-
-    static bool AreEqual(char[,] array1, char[,] array2)
-    {
-        if (array1.GetLength(0) != array2.GetLength(0) || array1.GetLength(1) != array2.GetLength(1))
-        {
-            return false;
-        }
-
-        for (int i = 0; i < array1.GetLength(0); i++)
-        {
-            for (int j = 0; j < array1.GetLength(1); j++)
-            {
-                if (array1[i, j] != array2[i, j])
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    static void MovePlayer(ConsoleKeyInfo keyInfo, char[,] carte)
-    {
-        switch (keyInfo.Key)
-        {
-            case ConsoleKey.Z:
-                MovePlayerIfValid(-1, 0, carte);
-                break;
-            case ConsoleKey.S:
-                MovePlayerIfValid(1, 0, carte);
-                break;
-            case ConsoleKey.Q:
-                MovePlayerIfValid(0, -1, carte);
-                break;
-            case ConsoleKey.D:
-                MovePlayerIfValid(0, 1, carte);
-                break;
-            case ConsoleKey.Escape:
-                Console.Clear();
-                Save.SaveGame();
-                Menu.main_menu();
-                break;
-        }
-    }
-
-    static void MovePlayerIfValid(int deltaY, int deltaX, char[,] carte)
-    {
-        int newPosY = posY + deltaY;
-        int newPosX = posX + deltaX;
-
-        if (IsValidMove(newPosY, newPosX, carte))
-        {
-            // Vérifier spécifiquement si le joueur est sur une case avec des hautes herbes
-            if (carte[newPosY, newPosX] == 'H')
-            {
-                LancerCombatSiRencontrePokemon(carte);
-         
-            }
-
-            // On change de map si on rencontre un symbole de changement de map
-            if (carte[newPosY, newPosX] == '►')
-            {
-               carte = ChangeMap(carte);
-               AfficherCarte(carte);
-            }
-            posY = newPosY;
-            posX = newPosX;
-
-            if (carte[newPosY, newPosX] == '◄')
-            {
-                carte = ChangeMap(carte);
-                AfficherCarte(carte);
-            }
-            posY = newPosY;
-            posX = newPosX;
-
-            if (carte[newPosY, newPosX] == '▲')
-            {
-                carte = ChangeMap(carte);
-                AfficherCarte(carte);
-            }
-            posY = newPosY;
-            posX = newPosX;
-
-            if (carte[newPosY, newPosX] == '▼')
-            {
-                carte = ChangeMap(carte);
-                AfficherCarte(carte);
-            }
-            posY = newPosY;
-            posX = newPosX;
-        }
-    }
-
-
-    static bool IsValidMove(int y, int x, char[,] carte)
-    {
-        return y >= 0 && y < carte.GetLength(0) && x >= 0 && x < carte.GetLength(1) && carte[y, x] == ' ' || carte[y, x] == 'H' || carte[y, x] == '►' || carte[y, x] == '◄' || carte[y, x] == '▲' || carte[y, x] == '▼';
-    }
-
-    static void ProcessDifficultyChoice()
-    {
-
-        Menu.difficulty_menu();
-        Console.Write("\nChoisissez une option (1-4): ");
-        char choice_difficulty = Console.ReadKey().KeyChar;
-
-        switch (choice_difficulty)
-        {
-            case '1':
-                ShowLoadingScreen("Difficulte facile selectionnée.", 500);
-                ShowLoadingScreen("Difficulte facile selectionnée..", 500);
-                ShowLoadingScreen("Difficulte facile selectionnée...", 500);
-                break;
-            case '2':
-                ShowLoadingScreen("Difficulte moyenne selectionnée.", 500);
-                ShowLoadingScreen("Difficulte moyenne selectionnée..", 500);
-                ShowLoadingScreen("Difficulte moyenne selectionnée...", 500);
-                break;
-            case '3':
-                ShowLoadingScreen("Difficulte difficile selectionnée.", 500);
-                ShowLoadingScreen("Difficulte difficile selectionnée..", 500);
-                ShowLoadingScreen("Difficulte difficile selectionnée...", 500);
-                break;
-            case '4':
-                Menu.main_menu();
-                break;
-            default:
-                Console.WriteLine("Difficulte actuelle : Aucune");
-                break;
-        }
-    }
-
-    static void AfficherCarte(char[,] carte)
-    {
-        for (int i = 0; i < carte.GetLength(0); i++)
-        {
-            for (int j = 0; j < carte.GetLength(1); j++)
-            {
-                if (i == posY && j == posX)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("O ");
-                }
-                else
-                {
-                    // Couleur marron pour les murs
-                    if (carte[i, j] == '#')
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    }
-                    // Couleur verte pour les hautes herbes
-                    else if (carte[i, j] == 'H')
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                    }
-                    else
-                    {
-                        Console.ResetColor();
-                    }
-
-                    Console.Write(carte[i, j] + " ");
-                }
-            }
-            Console.WriteLine();
-        }
-
-        // Assure-toi de réinitialiser la couleur après avoir affiché la carte
-        Console.ResetColor();
-    }
-
-
-    // Combat Pokemon
-    static void ShowLoadingScreen(string message, int durationMilliseconds)
-    {
-        Console.Clear();
-        Console.WriteLine(message);
-
-        Thread.Sleep(durationMilliseconds);
-    }
-
-    static void LancerCombatSiRencontrePokemon(char[,] carte)
+    //A METTRE DANS UNE CLASSE A PART (COMBAT)
+    // ----------------------Combat Pokemon-----------------------
+    public static void LancerCombatSiRencontrePokemon(char[,] carte)
     {
         Random random = new Random();
 
