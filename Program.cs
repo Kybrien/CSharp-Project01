@@ -9,9 +9,11 @@ using InputLoader;
 class Program
 {
     public static bool quit = false;
-    public static int posX = 1, posY = 1;
+    public static int posX = 8;
+    public static int posY = 1;
     public static char[,] currentMap = { };
     public static int currentMapIndex = 0;
+    public static int NumberOfItem = 0;
 
     static void Main()
     {
@@ -60,7 +62,16 @@ class Program
     }
     
 
-
+    public static void PickUpItem(char[,] carte)
+    {
+        Console.WriteLine("\nAppuyez sur la touche 'E' pour ramasser l'objet ->");
+        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+        if (keyInfo.Key == ConsoleKey.E)
+        {
+            Console.WriteLine("\nVous avez ramassé l'objet.");
+            carte[posY, posX] = '*';
+        }
+    }
 
     //A METTRE DANS UNE CLASSE A PART (COMBAT)
     // ----------------------Combat Pokemon-----------------------
