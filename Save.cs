@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Display;
+using System;
+using System.IO;
+using System.Text;
 
 namespace SaveEditor
 {  
@@ -7,7 +10,7 @@ namespace SaveEditor
     {
         public static void SaveGame()
         {
-            string filePath = "save.txt";
+            string filePath = Path.Combine(Environment.CurrentDirectory, "save.txt");
 
             try
             {
@@ -15,20 +18,30 @@ namespace SaveEditor
                 {
                     writer.WriteLine(Program.posX);
                     writer.WriteLine(Program.posY);
+
+                    // Sauvegarde de la carte
+                    for (int i = 0; i < Program.currentMap.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < Program.currentMap.GetLength(1); j++)
+                        {
+                            writer.Write(Program.currentMap[i, j]);
+                        }
+                        writer.WriteLine(); // Nouvelle ligne à la fin de chaque rangée de la carte
+                    }
                 }
 
                 Console.WriteLine("Partie sauvegardée avec succès.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erreur lors de la sauvegarde de la : " + ex.Message);
+                Console.WriteLine("Erreur lors de la sauvegarde : " + ex.Message);
             }
         }
 
         //Charger la sauvegarde
         public static void LoadGame()
         {
-            string filePath = "save.txt";
+            string filePath = Path.Combine(Environment.CurrentDirectory, "save.txt");
 
             try
             {
@@ -36,20 +49,32 @@ namespace SaveEditor
                 {
                     using (StreamReader reader = new StreamReader(filePath))
                     {
-                        if (int.TryParse(reader.ReadLine(), out Program.posX) && int.TryParse(reader.ReadLine(), out Program.posY))
+                        string? posXLine = reader.ReadLine();
+                        string? posYLine = reader.ReadLine();
+
+                        if (posXLine != null && posYLine != null)
                         {
-                            Console.WriteLine("Partie chargée avec succès. Position actuelle : ({", Program.posX, "}, {", Program.posY, "})");
+                            Program.posX = int.Parse(posXLine);
+                            Program.posY = int.Parse(posYLine);
                         }
-                        else
+
+                        // Chargement de la carte
+                        string? line;
+                        List<string> mapLines = new List<string>();
+                        while ((line = reader.ReadLine()) != null)
                         {
-                            Console.WriteLine("Erreur lors de la lecture du fichier de sauvegarde.");
+                            mapLines.Add(line);
+                        }
+
+                        Program.currentMap = new char[mapLines.Count, mapLines[0].Length];
+                        for (int i = 0; i < mapLines.Count; i++)
+                        {
+                            for (int j = 0; j < mapLines[i].Length; j++)
+                            {
+                                Program.currentMap[i, j] = mapLines[i][j];
+                            }
                         }
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Aucun fichier de sauvegarde trouvé.");
-                    Console.WriteLine("Creation d'une nouvelle partie...");
                 }
             }
             catch (Exception ex)
@@ -61,19 +86,23 @@ namespace SaveEditor
         //Supprimer la sauvegarde
         public static void DeleteSave()
         {
-            string filePath = "save.txt";
+            string filePath = Path.Combine(Environment.CurrentDirectory, "save.txt");
 
             try
             {
                 if (File.Exists(filePath))
                 {
                     File.Delete(filePath);
-                    Console.WriteLine("Sauvegarde supprimée avec succès.");
                 }
-                else
-                {
-                    Console.WriteLine("Aucune sauvegarde trouvée.");
-                }
+
+                // Réinitialiser la position
+                Program.posX = 8;
+                Program.posY = 1;
+
+                // Réinitialiser la carte
+                Program.currentMap = Map.InitMap1();
+
+                Console.WriteLine("Sauvegarde supprimée et jeu réinitialisé.");
             }
             catch (Exception ex)
             {
