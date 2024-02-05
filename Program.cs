@@ -45,12 +45,12 @@ class Program
             Console.WindowWidth = 60;
             Console.WindowHeight = 20;
         }
-    }  
+    }
 
     public static void PlayGame()
     {
-        Sound.ChangeMusicBasedOnMap(currentMapIndex);
         Map.AfficherCarte(currentMap);
+        Sound.ChangeMusicBasedOnMap(currentMapIndex); // Appel pour changer la musique en fonction de la carte actuelle
 
         ConsoleKeyInfo keyInfo;
         do
@@ -64,7 +64,7 @@ class Program
 
         AudioManager.StopMusic();
     }
-    
+
 
     public static void PickUpItem(char[,] carte)
     {

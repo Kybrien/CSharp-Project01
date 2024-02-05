@@ -14,11 +14,11 @@ namespace SoundLoader
         {
             if (mapNumber >= 0 && mapNumber <= 2)
             {
-                AudioManager.PlayMusic("Music/OST_13.mp3");
+                AudioManager.PlayMusic("OST_13.mp3");
             }
             else if (mapNumber >= 3 && mapNumber <= 4)
             {
-                AudioManager.PlayMusic("Music/OST_13.mp3");
+                AudioManager.PlayMusic("OST_13.mp3");
             }
         }
     }
