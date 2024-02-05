@@ -49,7 +49,6 @@ class Program
 
     public static void PlayGame()
     {
-        Sound.SetVolume(1.0f);
         Map.AfficherCarte(currentMap);
         Sound.ChangeMusicBasedOnMap(currentMapIndex);
 

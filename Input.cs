@@ -135,7 +135,6 @@ namespace InputLoader
 
             }
         }
-
         private static void MovePlayerIfValid(int deltaY, int deltaX, char[,] carte)
         {
             int newPosY = Program.posY + deltaY;

@@ -5,7 +5,7 @@ namespace SoundLoader
 {
     public static class Sound
     {
-        private static IWavePlayer waveOutDevice = new WaveOutEvent();
+        private static IWavePlayer waveOutDevice;
         private static AudioFileReader audioFileReader;
 
         public static void ChangeMusicBasedOnMap(int mapNumber)
@@ -14,7 +14,7 @@ namespace SoundLoader
 
             if (!string.IsNullOrEmpty(filePath))
             {
-                StopMusic();
+                StopMusic(); // Arrête et libère les ressources de la musique précédente
 
                 audioFileReader = new AudioFileReader(filePath);
                 waveOutDevice = new WaveOutEvent();
@@ -25,7 +25,20 @@ namespace SoundLoader
 
         public static void StopMusic()
         {
-            if (waveOutDevice != null && waveOutDevice.PlaybackState == PlaybackState.Playing)
+            DisposeWave(); // Libère les ressources audio
+        }
+
+        /*public static void SetVolume(float volume)
+        {
+            if (audioFileReader != null)
+            {
+                audioFileReader.Volume = volume; // Réglez le volume (entre 0.0 et 1.0)
+            }
+        }*/
+
+        private static void DisposeWave()
+        {
+            if (waveOutDevice != null)
             {
                 waveOutDevice.Stop();
                 waveOutDevice.Dispose();
@@ -36,14 +49,6 @@ namespace SoundLoader
             {
                 audioFileReader.Dispose();
                 audioFileReader = null;
-            }
-        }
-
-        public static void SetVolume(float volume)
-        {
-            if (audioFileReader != null)
-            {
-                audioFileReader.Volume = volume; // Réglez le volume de l'AudioFileReader (entre 0.0 et 1.0)
             }
         }
 
