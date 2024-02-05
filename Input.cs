@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using Display;
 using SaveEditor;
+using SoundLoader;
 
 namespace InputLoader
 {
@@ -98,6 +100,8 @@ namespace InputLoader
                     MovePlayerIfValid(0, 1, carte);
                     break;
                 case ConsoleKey.Escape:
+                    #pragma warning disable CA1416
+                    AudioManager.soundPlayer.Stop();
                     Console.Clear();
                     Save.SaveGame();
                     Menu.main_menu();
@@ -107,11 +111,28 @@ namespace InputLoader
             {
                 Program.currentMapIndex++; // Augmente l'indice de la carte
                 Map.ChangeMap();
+                if (Program.currentMapIndex == 2)
+                {
+                    Sound.ChangeMusicBasedOnMap(Program.currentMapIndex);
+                }
+                else if (Program.currentMapIndex == 4)
+                {
+                    Sound.ChangeMusicBasedOnMap(Program.currentMapIndex);
+                }
             }
             else if (carte[Program.posY, Program.posX] == '◄')
             {
                 Program.currentMapIndex--; // Diminue l'indice de la carte
                 Map.ChangeMap();
+                if (Program.currentMapIndex == 1)
+                {
+                    Sound.ChangeMusicBasedOnMap(Program.currentMapIndex);
+                }
+                else if (Program.currentMapIndex == 3)
+                {
+                    Sound.ChangeMusicBasedOnMap(Program.currentMapIndex);
+                }
+
             }
         }
 

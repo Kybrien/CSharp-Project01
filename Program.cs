@@ -50,7 +50,7 @@ class Program
     public static void PlayGame()
     {
         Map.AfficherCarte(currentMap);
-        Sound.ChangeMusicBasedOnMap(currentMapIndex); // Appel pour changer la musique en fonction de la carte actuelle
+        Sound.ChangeMusicBasedOnMap(currentMapIndex);
 
         ConsoleKeyInfo keyInfo;
         do
@@ -62,7 +62,6 @@ class Program
 
         } while (keyInfo.Key != ConsoleKey.Escape);
 
-        AudioManager.StopMusic();
     }
 
 
