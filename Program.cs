@@ -5,6 +5,7 @@ using System.IO;
 using Display;
 using SaveEditor;
 using InputLoader;
+using SoundLoader;
 
 class Program
 {
@@ -48,6 +49,7 @@ class Program
 
     public static void PlayGame()
     {
+        Sound.ChangeMusicBasedOnMap(currentMapIndex);
         Map.AfficherCarte(currentMap);
 
         ConsoleKeyInfo keyInfo;
@@ -59,6 +61,8 @@ class Program
             Map.AfficherCarte(currentMap);
 
         } while (keyInfo.Key != ConsoleKey.Escape);
+
+        AudioManager.StopMusic();
     }
     
 

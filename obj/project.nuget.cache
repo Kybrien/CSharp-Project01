@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "5IVJJ+ROWh/fc73FYheN2wdqcLjjg1bPHbp9YskWYls8SF3KOSpQCqlaO96fSldFzATy0h0X+/aa04NBLsb51w==",
+  "dgSpecHash": "o7m3ycOE9+vmctPNWClT+0f6H7jmfjoE1X8QmUxRNF/yrqat3EgmkoE5z4LACHwliGYkm7Codw6NL0M9P5RL9A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Adrien\\Desktop\\CSharp\\CSharp-Project01\\game.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\apatte\\Desktop\\CSharp\\CSharp-Project01\\game.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\apatte\\.nuget\\packages\\system.windows.extensions\\8.0.0\\system.windows.extensions.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
