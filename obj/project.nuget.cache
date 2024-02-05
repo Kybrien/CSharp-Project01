@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "0CRLlF/TvUNG7qHlB3QUnO3A7Y2pQElx/6+Cc7SnLvUqMkEw4UepxPo9GjRMNAVWknPRdJFGFt2jJitKMp+Ywg==",
+  "dgSpecHash": "0En3C9kBBln+QpzigGUlkvgG3bu1HjyI+PSI7ZFz7O2yBrCpPbHc+DY715a5ZEFFEOGZvcjQxALJw0adSl4BYw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hroy\\Documents\\GitHub\\CSharp-Project01\\game.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\royhu\\Documents\\GitHub\\CSharp-Project01\\game.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\royhu\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\royhu\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\royhu\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\royhu\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.25\\microsoft.netcore.app.host.win-x64.6.0.25.nupkg.sha512"
+  ],
   "logs": []
 }

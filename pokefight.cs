@@ -20,8 +20,9 @@ namespace fight
             private int specialDefense;
             private int speed;
             public int Potion { get; set; } = 5;
+            public List<Ability> Abilities { get; set; }
 
-            public Pokemon(string name, string type, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed)
+        public Pokemon(string name, string type, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed)
             {
                 this.name = name;
                 this.type = type;
@@ -31,6 +32,7 @@ namespace fight
                 this.specialAttack = specialAttack;
                 this.specialDefense = specialDefense;
                 this.speed = speed;
+                //this.Abilities = Abilities;
             }
 
             public void UsePotion()
@@ -217,20 +219,6 @@ namespace fight
             return abilities;
         }
 
-        /*public class BibliothequePokemon
-        {
-            public static List<Pokemon> GetListePokemon()
-            {
-                List<Pokemon> listePokemon = new List<Pokemon>();
-
-                // Ajoutez vos Pokémon ici
-                listePokemon.Add(new Pokemon("Pikachu", 100, new List<Attaque> { new Attaque("Éclair", 20), new Attaque("Queue de fer", 15) }));
-                listePokemon.Add(new Pokemon("Bulbizarre", 120, new List<Attaque> { new Attaque("Fouet lianes", 18), new Attaque("Vampigraine", 12) }));
-                // ... Ajoutez d'autres Pokémon de la même manière
-
-                return listePokemon;
-            }
-        }*/
         public static void createPokefile()
         {
             string pokemonFilePath = "Pokedico.txt"; // Chemin du fichier des Pokémon
@@ -268,7 +256,6 @@ namespace fight
                 foreach (var ability in abilities)
                 {
                    
-                    Console.WriteLine($"- {ability.GetName()} (Power: {ability.GetPower()}, Accuracy: {ability.GetAccuracy()}, Category: {ability.GetCategory()})");
                     writer.WriteLine($"- {ability.GetName()} (Power: {ability.GetPower()}, Accuracy: {ability.GetAccuracy()}, Category: {ability.GetCategory()})");
                 }
             
@@ -290,7 +277,32 @@ namespace fight
 
 
         }
-    }
+        /*public class BibliothequePokemon
+        {
+            string pokemonFilePath = "Pokedico.txt"; // Chemin du fichier des Pokémon
+            string abilitiesFilePath = "Abilities.txt"; // Chemin du fichier des capacités
 
+            List<Pokemon> pokemons = ReadPokemonFromFile(pokemonFilePath);
+            List<Ability> abilities = ReadAbilitiesFromFile(abilitiesFilePath);
+
+         
+            foreach (var pokemon in pokemons)
+            {
+
+            }
+           public static List<Pokemon> GetListePokemon()
+            {
+                List<Pokemon> listePokemon = new List<Pokemon>();
+
+                // Ajoutez vos Pokémon ici
+                listePokemon.Add(new Pokemon("Pikachu", 100, new List<Attaque> { new Attaque("Éclair", 20), new Attaque("Queue de fer", 15) }));
+                listePokemon.Add(new Pokemon("Bulbizarre", 120, new List<Attaque> { new Attaque("Fouet lianes", 18), new Attaque("Vampigraine", 12) }));
+                // ... Ajoutez d'autres Pokémon de la même manière
+
+                return listePokemon;
+            }*/
+    }
 }
+    
+
 

@@ -42,7 +42,7 @@ class Program
             Console.WindowWidth = 60;
             Console.WindowHeight = 20;
         }
-    }  
+    }
 
     public static void PlayGame()
     {
@@ -58,7 +58,7 @@ class Program
 
         } while (keyInfo.Key != ConsoleKey.Escape);
     }
-    
+
 
 
 
