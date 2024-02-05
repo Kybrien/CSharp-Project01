@@ -9,7 +9,9 @@ namespace CombatLoader
 {
     public class Combat
     {
-        // ----------------------Combat Pokemon-----------------------
+        public static bool APokemonRencontre { get; set; } = false;
+        public static int degatsInfliges = 0;
+
         public static void LancerCombatSiRencontrePokemon(char[,] carte, int playerPosX, int playerPosY)
         {
             Random random = new Random();
@@ -22,6 +24,7 @@ namespace CombatLoader
                 {
                     // Rencontre un Pokémon
                     Console.WriteLine("Vous avez rencontré un Pokémon sauvage !");
+                    APokemonRencontre = true;
 
                     // Sélectionner un Pokémon au hasard depuis la bibliothèque
                     List<Pokemon> listePokemon = BibliothequePokemon.GetListePokemon();
@@ -45,25 +48,15 @@ namespace CombatLoader
                         Console.WriteLine($"Vous avez infligé {degatsInfliges} points de dégâts.");
                         Console.WriteLine($"Points de vie restants du {pokemonRencontre.Nom}: {pokemonRencontre.PointsDeVie}");
 
+                        // Tour du Pokémon sauvage
+                        Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
+                        iaEasy(pokemonRencontre);
+
+
                         if (pokemonRencontre.PointsDeVie <= 0)
                         {
                             Console.WriteLine($"Le {pokemonRencontre.Nom} sauvage a été vaincu !");
-                            break;
-                        }
-
-                        // Tour du Pokémon sauvage
-                        Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
-                        int choixAttaquePokemon = random.Next(pokemonRencontre.Attaques.Count);
-
-                        // Appliquer les dégâts au joueur
-                        int degatsInfligesPokemon = pokemonRencontre.Attaques[choixAttaquePokemon].Puissance;
-                        // En supposant que le joueur a 100 points de vie initiaux
-                        Console.WriteLine($"{pokemonRencontre.Nom} a infligé {degatsInfligesPokemon} points de dégâts.");
-                        Console.WriteLine($"Points de vie restants du joueur: {100 - degatsInfligesPokemon}");
-
-                        if (100 - degatsInfligesPokemon <= 0)
-                        {
-                            Console.WriteLine($"Vous avez été vaincu par le {pokemonRencontre.Nom} sauvage !");
+                            APokemonRencontre = false;
                             break;
                         }
                     }
@@ -72,6 +65,7 @@ namespace CombatLoader
                     if (pokemonRencontre.PointsDeVie > 0)
                     {
                         carte[playerPosY, playerPosX] = ' ';
+                        APokemonRencontre = false;
                     }
                 }
             }
@@ -129,7 +123,7 @@ namespace CombatLoader
             {
                 List<Pokemon> listePokemon = new List<Pokemon>();
 
- 
+
                 listePokemon.Add(new Pokemon("Pikachu", 100, new List<Attaque> { new Attaque("Éclair", 20), new Attaque("Queue de fer", 15) }));
                 listePokemon.Add(new Pokemon("Bulbizarre", 120, new List<Attaque> { new Attaque("Fouet lianes", 18), new Attaque("Vampigraine", 12) }));
                 // ... Ajoutez d'autres Pokémon de la même manière
@@ -137,6 +131,29 @@ namespace CombatLoader
                 return listePokemon;
             }
         }
-    }
-}
+        public static void iaEasy(Pokemon pokemon)
+        {
+            Random random = new Random();
 
+            for (int i = 0; i < 1; i++)
+            {
+                int choixAttaque = random.Next(1, pokemon.Attaques.Count + 1);
+
+                // Appliquer les dégâts au joueur
+                int degatsAttaque = pokemon.Attaques[choixAttaque - 1].Puissance;
+                degatsInfliges += degatsAttaque;
+                Console.WriteLine($"{pokemon.Nom} a utilisé {pokemon.Attaques[choixAttaque - 1].Nom} !");
+                Console.WriteLine($"{pokemon.Nom} a infligé {degatsAttaque} points de dégâts.");
+            }
+
+            // En supposant que le joueur a 100 points de vie initiaux
+            int pointsDeVieRestants = 100 - degatsInfliges;
+            Console.WriteLine($"Points de vie restants du joueur: {pointsDeVieRestants}");
+
+            if (pointsDeVieRestants <= 0)
+            {
+                Console.WriteLine($"Vous avez été vaincu par le {pokemon.Nom} sauvage !");
+            }
+        }
+    }   
+}

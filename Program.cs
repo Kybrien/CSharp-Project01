@@ -35,9 +35,7 @@ class Program
 
             Input.ProcessChoice(choice, currentMap);
 
-            Combat.LancerCombatSiRencontrePokemon(currentMap, posX, posY);
-            Combat.AfficherAttaquesJoueur(new Combat.Pokemon("", 0, new List<Combat.Attaque>()));
-            int choixAttaque = Combat.DemanderChoixAttaque(0);
+            
 
 
         } while (!quit);
@@ -64,6 +62,13 @@ class Program
             Console.Clear();
             Map.AfficherCarte(currentMap);
 
+            // Vérifier si le joueur a rencontré un Pokémon
+            if (Combat.APokemonRencontre)
+            {
+                Combat.AfficherAttaquesJoueur(new Combat.Pokemon("", 0, new List<Combat.Attaque>()));
+                int choixAttaque = Combat.DemanderChoixAttaque(0);
+                // Faites quelque chose avec le choix d'attaque, par exemple, appliquer des dégâts à l'adversaire
+            }
         } while (keyInfo.Key != ConsoleKey.Escape);
     }
 
