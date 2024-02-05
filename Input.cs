@@ -101,7 +101,7 @@ namespace InputLoader
                     break;
                 case ConsoleKey.Escape:
                     #pragma warning disable CA1416
-                    AudioManager.soundPlayer.Stop();
+                    Sound.StopMusic();
                     Console.Clear();
                     Save.SaveGame();
                     Menu.main_menu();
