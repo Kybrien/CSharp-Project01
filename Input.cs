@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Display;
 using SaveEditor;
+using CombatLoader;
 
 namespace InputLoader
 {
@@ -29,8 +30,6 @@ namespace InputLoader
                     break;
                 case '4':
                     Save.DeleteSave();
-                    Program.posY = 1;
-                    Program.posX = 1;
                     Menu.ShowLoadingScreen("Suppression de la partie.", 500);
                     Menu.ShowLoadingScreen("Suppression de la partie..", 500);
                     Menu.ShowLoadingScreen("Suppression de la partie...", 500);
@@ -75,7 +74,7 @@ namespace InputLoader
                     Menu.ShowLoadingScreen("Difficulte difficile selectionnée...", 500);
                     break;
                 case '4':
-                    Menu.main_menu();
+                    Menu.main_menu(); 
                     break;
                 default:
                     Console.WriteLine("Difficulte actuelle : Aucune");
@@ -127,10 +126,19 @@ namespace InputLoader
                 // Vérifier spécifiquement si le joueur est sur une case avec des hautes herbes
                 if (carte[newPosY, newPosX] == 'H')
                 {
-                    Program.LancerCombatSiRencontrePokemon(carte);
+                    Combat.LancerCombatSiRencontrePokemon(carte, newPosX, newPosY);
 
                 }
-
+                if (carte[newPosY, newPosX] == '┼')
+                {
+                    Program.posX = newPosX;
+                    Program.posY = newPosY;
+                    Program.PickUpItem(carte);
+                }
+                if (carte[newPosY, newPosX] == '~')
+                {
+                    /*SurfChoice();*/
+                }
                 // On change de map si on rencontre un symbole de changement de map
                 if (carte[newPosY, newPosX] == '►')
                 {
@@ -146,10 +154,16 @@ namespace InputLoader
                 Program.posX = newPosX;
             }
         }
+        /*public static bool SurfChoice()
+        {
+            Console.WriteLine("Voulez-vous utiliser Surf? (O/N)");
+            char choice = Console.ReadKey().KeyChar;
+            return choice == 'O' || choice == 'o';
+        }*/
 
         private static bool IsValidMove(int y, int x, char[,] carte)
         {
-            return y >= 0 && y < carte.GetLength(0) && x >= 0 && x < carte.GetLength(1) && carte[y, x] == ' ' || carte[y, x] == 'H' || carte[y, x] == '►' || carte[y, x] == '◄' || carte[y, x] == '▲' || carte[y, x] == '▼';
+            return y >= 0 && y < carte.GetLength(0) && x >= 0 && x < carte.GetLength(1) && carte[y, x] == ' ' || carte[y, x] == 'H' || carte[y, x] == '►' || carte[y, x] == '◄' || carte[y, x] == '┼' || carte[y, x] == '*';
         }
     }
 }

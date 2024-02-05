@@ -96,11 +96,11 @@ namespace SaveEditor
                 }
 
                 // Réinitialiser la position
-                Program.posX = 1; // Ou toute autre position par défaut
-                Program.posY = 1; // Ou toute autre position par défaut
+                Program.posX = 8;
+                Program.posY = 1;
 
                 // Réinitialiser la carte
-                Program.currentMap = Map.InitMap1(); // Ou toute autre carte par défaut
+                Program.currentMap = Map.InitMap1();
 
                 Console.WriteLine("Sauvegarde supprimée et jeu réinitialisé.");
             }
