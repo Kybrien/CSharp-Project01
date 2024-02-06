@@ -22,7 +22,7 @@ namespace fight
             public int Potion { get; set; } = 5;
             public List<Ability> Abilities { get; set; }
 
-        public Pokemon(string name, string type, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed)
+        public Pokemon(string name, string type, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed, List<Ability> Abilities)
             {
                 this.name = name;
                 this.type = type;
@@ -32,7 +32,7 @@ namespace fight
                 this.specialAttack = specialAttack;
                 this.specialDefense = specialDefense;
                 this.speed = speed;
-                //this.Abilities = Abilities;
+                this.Abilities = Abilities;
             }
 
             public void UsePotion()
@@ -81,7 +81,7 @@ namespace fight
             public int GetSpecialDefense() => specialDefense;
         }
 
-        public class Ability
+        /public class Ability
         {
             private string name;
             private int power;
@@ -178,6 +178,7 @@ namespace fight
                         int specialAttack = int.Parse(parts[5]);
                         int specialDefense = int.Parse(parts[6]);
                         int speed = int.Parse(parts[7]);
+
 
                         Pokemon pokemon = new Pokemon(name, type, hp, attack, defense, specialAttack, specialDefense, speed);
                         pokemons.Add(pokemon);
