@@ -26,6 +26,7 @@ namespace InputLoader
                     if (Program.currentMapIndex == 0)
                     {
                         Loading_Screen.Little_Woods();
+                        Console.Clear();
                     }
                     Program.PlayGame();
                     break;
