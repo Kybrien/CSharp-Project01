@@ -65,6 +65,8 @@ namespace SoundLoader
                 case 4:
                 case 5:
                     return "OST_56.wav";
+                case 6:
+                    return "Introduction.wav";
                 default:
                     return "";
             }

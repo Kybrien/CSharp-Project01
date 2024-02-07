@@ -375,7 +375,18 @@ namespace Display
 
             Thread.Sleep(durationMilliseconds);
         }
-        
+    }
+    public class TextDisplay
+    {
+        // Fonction pour afficher progressivement du texte dans la console
+        public static void Sleeping(string text, int delayMilliseconds)
+        {
+            foreach (char c in text)
+            {
+                Console.Write(c);
+                Thread.Sleep(delayMilliseconds); // Attendre avant d'afficher le prochain caractère
+            }
+        }
     }
 
     
