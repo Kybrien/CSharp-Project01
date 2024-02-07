@@ -9,28 +9,6 @@ namespace Display
         public static char[,] ChangeMap(char[,] carte)
         {
             char[,] newMap = carte;
-
-            /*if (AreEqual(carte, Map.InitMap1()))
-            {
-            }
-            if (AreEqual(carte, Map.InitMap2()))
-            {
-            }
-            if (AreEqual(carte, Map.InitMap3()))
-            { 
-            }
-            if (AreEqual(carte, Map.InitMap4()))
-            {
-                Loading_Screen.Lava_Fields();
-            }
-            if (AreEqual(carte, Map.InitMap5()))
-            {
-            }
-            if (AreEqual(carte, Map.InitMap6()))
-            {
-            }*/
-
-
             return newMap;
         }
 
