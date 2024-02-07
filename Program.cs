@@ -65,8 +65,8 @@ class Program
             // Vérifier si le joueur a rencontré un Pokémon
             if (Combat.APokemonRencontre)
             {
-                Combat.AfficherAttaquesJoueur(new Combat.Pokemon("", 0, new List<Combat.Attaque>()));
-                int choixAttaque = Combat.DemanderChoixAttaque(0);
+                Combat.AfficherCapacitesJoueur(new Combat.Pokemon("","",0,0,0,0,0, 0, new List<Combat.Capacite>()));
+                int choixAttaque = Combat.DemanderChoixCapacite(0);
                 // Faites quelque chose avec le choix d'attaque, par exemple, appliquer des dégâts à l'adversaire
             }
         } while (keyInfo.Key != ConsoleKey.Escape);

@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,149 +8,149 @@ using static Program;
 using fight;
 namespace fight
 {
-        public class Pokemon
-        {
-            private string name;
-            private string type;
+    public class Pokemon
+    {
+        private string name;
+        private string type;
 
-            private int hp;
-            private int attack;
-            private int defense;
-            private int specialAttack;
-            private int specialDefense;
-            private int speed;
-            public int Potion { get; set; } = 5;
-            public List<Ability> Abilities { get; set; }
+        private int hp;
+        private int attack;
+        private int defense;
+        private int specialAttack;
+        private int specialDefense;
+        private int speed;
+        public int Potion { get; set; } = 5;
+        public List<Ability> Abilities { get; set; }
 
         public Pokemon(string name, string type, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed, List<Ability> Abilities)
-            {
-                this.name = name;
-                this.type = type;
-                this.hp = hp;
-                this.attack = attack;
-                this.defense = defense;
-                this.specialAttack = specialAttack;
-                this.specialDefense = specialDefense;
-                this.speed = speed;
-                this.Abilities = Abilities;
-            }
-
-            public void UsePotion()
-            {
-                hp += 10;
-                Console.WriteLine("Vous avez soigné 30 PV.");
-                Potion--;
-                Console.WriteLine($"Il vous reste {Potion} potions.");
-            }
-
-            public int TakeDamage(int damage)
-            {
-                hp -= damage;
-                return hp;
-            }
-
-            public void LowerAttack()
-            {
-                attack -= 5;
-            }
-
-            public void LowerDefense()
-            {
-                defense -= 5;
-            }
-
-            public bool IsFainted()
-            {
-                return hp <= 0;
-            }
-
-            public void DisplayStats()
-            {
-                Console.WriteLine($"{name} - \nHP: {hp}\nType : {type}\nAttack: {attack}\nDefense: {defense}\nSpecial Attack: {specialAttack}\nSpecial Defense: {specialDefense}\nSpeed: {speed}");
-            }
-
-            // Accessor methods
-            public string GetName() => name;
-            public string GetType() => type;
-
-            public int GetHp() => hp;
-            public int GetSpeed() => speed;
-            public int GetAttack() => attack;
-            public int GetDefense() => defense;
-            public int GetSpecialAttack() => specialAttack;
-            public int GetSpecialDefense() => specialDefense;
+        {
+            this.name = name;
+            this.type = type;
+            this.hp = hp;
+            this.attack = attack;
+            this.defense = defense;
+            this.specialAttack = specialAttack;
+            this.specialDefense = specialDefense;
+            this.speed = speed;
+            this.Abilities = Abilities;
         }
 
-        /public class Ability
+        public void UsePotion()
         {
-            private string name;
-            private int power;
-            private double accuracy;
-            private string category; // "Physical", "Special", or "Status"
+            hp += 10;
+            Console.WriteLine("Vous avez soigné 30 PV.");
+            Potion--;
+            Console.WriteLine($"Il vous reste {Potion} potions.");
+        }
 
-            public Ability(string name, int power, int accuracy, string category)
-            {
-                this.name = name;
-                this.power = power;
-                this.accuracy = accuracy;
-                this.category = category;
-            }
+        public int TakeDamage(int damage)
+        {
+            hp -= damage;
+            return hp;
+        }
 
-            public void DisplayDetails()
-            {
-                Console.WriteLine($"Name: {name}\nPower: {power}\nAccuracy: {accuracy}\nCategory: {category}");
-            }
+        public void LowerAttack()
+        {
+            attack -= 5;
+        }
 
-            public string GetName() => name;
-            public int GetPower() => power;
-            public double GetAccuracy() => accuracy;
-            public string GetCategory() => category;
+        public void LowerDefense()
+        {
+            defense -= 5;
+        }
 
-        
+        public bool IsFainted()
+        {
+            return hp <= 0;
+        }
+
+        public void DisplayStats()
+        {
+            Console.WriteLine($"{name} - \nHP: {hp}\nType : {type}\nAttack: {attack}\nDefense: {defense}\nSpecial Attack: {specialAttack}\nSpecial Defense: {specialDefense}\nSpeed: {speed}");
+        }
+
+        // Accessor methods
+        public string GetName() => name;
+        public string GetType() => type;
+
+        public int GetHp() => hp;
+        public int GetSpeed() => speed;
+        public int GetAttack() => attack;
+        public int GetDefense() => defense;
+        public int GetSpecialAttack() => specialAttack;
+        public int GetSpecialDefense() => specialDefense;
+    }
+
+        public class Ability
+    {
+        private string name;
+        private int power;
+        private double accuracy;
+        private string category; // "Physical", "Special", or "Status"
+
+        public Ability(string name, int power, int accuracy, string category)
+        {
+            this.name = name;
+            this.power = power;
+            this.accuracy = accuracy;
+            this.category = category;
+        }
+
+        public void DisplayDetails()
+        {
+            Console.WriteLine($"Name: {name}\nPower: {power}\nAccuracy: {accuracy}\nCategory: {category}");
+        }
+
+        public string GetName() => name;
+        public int GetPower() => power;
+        public double GetAccuracy() => accuracy;
+        public string GetCategory() => category;
+
+
     }
 
 
-        public class Move
+    public class Move
+    {
+        public static void ManageMove(int choice, Pokemon attacker, Pokemon defender, Ability attackAbility, Ability statusAbility)
         {
-            public static void ManageMove(int choice, Pokemon attacker, Pokemon defender, Ability attackAbility, Ability statusAbility)
+            Random rand = new Random();
+            int randomChance = rand.Next(100);
+
+            switch (choice)
             {
-                Random rand = new Random();
-                int randomChance = rand.Next(100);
-
-                switch (choice)
-                {
-                    case 1:
-                        int damage = (attackAbility.GetPower() + (attacker.GetAttack() / defender.GetDefense())) / 8 + 1;
-                        Console.WriteLine($"{attacker.GetName()} attaque !");
-                        if (randomChance <= attackAbility.GetAccuracy())
-                        {
-                            Console.WriteLine($"{defender.GetName()} a subi {damage} dommages.");
-                            defender.TakeDamage(damage);
-                        }
-                        else
-                        {
-                            Console.WriteLine("L'attaque a échoué !");
-                        }
-                        break;
-                    case 2:
-                        if (statusAbility.GetName() == "Growl")
-                        {
-                            Console.WriteLine($"{attacker.GetName()} a affaibli l'attaque de l'ennemi.");
-                            defender.LowerAttack();
-                        }
-                        else if (statusAbility.GetName() == "Tail Whip" || statusAbility.GetName() == "Leer")
-                        {
-                            Console.WriteLine($"{attacker.GetName()} a affaibli la défense de l'ennemi.");
-                            defender.LowerDefense();
-                        }
-                        break;
-                    case 3:
-                        attacker.UsePotion();
-                        break;
-                }
-
-                Thread.Sleep(2000); // Pause for 2 seconds
+                case 1:
+                    int damage = (attackAbility.GetPower() + (attacker.GetAttack() / defender.GetDefense())) / 8 + 1;
+                    Console.WriteLine($"{attacker.GetName()} attaque !");
+                    if (randomChance <= attackAbility.GetAccuracy())
+                    {
+                        Console.WriteLine($"{defender.GetName()} a subi {damage} dommages.");
+                        defender.TakeDamage(damage);
+                    }
+                    else
+                    {
+                        Console.WriteLine("L'attaque a échoué !");
+                    }
+                    break;
+                case 2:
+                    if (statusAbility.GetName() == "Growl")
+                    {
+                        Console.WriteLine($"{attacker.GetName()} a affaibli l'attaque de l'ennemi.");
+                        defender.LowerAttack();
+                    }
+                    else if (statusAbility.GetName() == "Tail Whip" || statusAbility.GetName() == "Leer")
+                    {
+                        Console.WriteLine($"{attacker.GetName()} a affaibli la défense de l'ennemi.");
+                        defender.LowerDefense();
+                    }
+                    break;
+                case 3:
+                    attacker.UsePotion();
+                    break;
             }
+
+            Thread.Sleep(2000); // Pause for 2 seconds
+        }
 
     }
 
@@ -228,7 +228,7 @@ namespace fight
             List<Pokemon> pokemons = ReadPokemonFromFile(pokemonFilePath);
             List<Ability> abilities = ReadAbilitiesFromFile(abilitiesFilePath);
 
-         
+
             foreach (var pokemon in pokemons)
             {
                 CreatePokemonFile(pokemon, abilities.GetRange(0, Math.Min(4, abilities.Count)));
@@ -256,10 +256,10 @@ namespace fight
                 Console.WriteLine(abilities.Count);
                 foreach (var ability in abilities)
                 {
-                   
+
                     writer.WriteLine($"- {ability.GetName()} (Power: {ability.GetPower()}, Accuracy: {ability.GetAccuracy()}, Category: {ability.GetCategory()})");
                 }
-            
+
             }
 
             Console.WriteLine($"Fichier créé pour {pokemon.GetName()}.");
@@ -301,9 +301,6 @@ namespace fight
                 // ... Ajoutez d'autres Pokémon de la même manière
 
                 return listePokemon;
-            }*/
+            }
     }
-}
-    
-
-
+}*/

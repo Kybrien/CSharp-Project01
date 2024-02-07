@@ -38,11 +38,11 @@ namespace CombatLoader
                     {
                         // Tour du joueur
                         Console.WriteLine("\nC'est à votre tour :");
-                        AfficherAttaquesJoueur(pokemonRencontre);
-                        int choixAttaque = DemanderChoixAttaque(pokemonRencontre.Attaques.Count);
+                        AfficherCapacitesJoueur(pokemonRencontre);
+                        int choixCapacite = DemanderChoixCapacite(pokemonRencontre.Capacites.Count);
 
                         // Appliquer les dégâts à Pokémon sauvage
-                        int degatsInfliges = pokemonRencontre.Attaques[choixAttaque - 1].Puissance;
+                        int degatsInfliges = pokemonRencontre.Capacites[choixCapacite - 1].Puissance;
                         pokemonRencontre.PointsDeVie -= degatsInfliges;
 
                         Console.WriteLine($"Vous avez infligé {degatsInfliges} points de dégâts.");
@@ -71,22 +71,22 @@ namespace CombatLoader
             }
         }
 
-        public static void AfficherAttaquesJoueur(Pokemon pokemon)
+        public static void AfficherCapacitesJoueur(Pokemon pokemon)
         {
-            Console.WriteLine("Choisissez une attaque :");
-            for (int i = 0; i < pokemon.Attaques.Count; i++)
+            Console.WriteLine("Choisissez une Capacite :");
+            for (int i = 0; i < pokemon.Capacites.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {pokemon.Attaques[i].Nom} (Puissance : {pokemon.Attaques[i].Puissance})");
+                Console.WriteLine($"{i + 1}. {pokemon.Capacites[i].Nom} (Puissance : {pokemon.Capacites[i].Puissance})");
             }
         }
 
-        public static int DemanderChoixAttaque(int nombreAttaques)
+        public static int DemanderChoixCapacite(int nombreCapacites)
         {
             int choix = 0;
             do
             {
                 Console.Write("Votre choix : ");
-            } while (!int.TryParse(Console.ReadLine(), out choix) || choix < 1 || choix > nombreAttaques);
+            } while (!int.TryParse(Console.ReadLine(), out choix) || choix < 1 || choix > nombreCapacites);
 
             return choix;
         }
@@ -94,26 +94,48 @@ namespace CombatLoader
         public class Pokemon
         {
             public string Nom { get; set; }
+            public string Type { get; set; }
             public int PointsDeVie { get; set; }
-            public List<Attaque> Attaques { get; set; }
+            public int Attack;
+            public int Defense;
+            public int SpecialAttack;
+            public int SpecialDefense;
+            public int Speed;
+            public int Potion { get; set; } = 5;
+            public List<Capacite> Capacites { get; set; }
 
-            public Pokemon(string nom, int pointsDeVie, List<Attaque> attaques)
+            public Pokemon(string nom,string type, int pointsDeVie,int attack,int defense,int specialAttack,int specialDefense, int speed, List<Capacite> capacites)
             {
                 Nom = nom;
                 PointsDeVie = pointsDeVie;
-                Attaques = attaques;
+                Attack = attack;
+                Defense = defense;
+                SpecialAttack = specialAttack;
+                SpecialDefense = specialDefense;
+                Speed = speed;
+
+                Capacites = capacites;
             }
         }
 
-        public class Attaque
+        public class Capacite
         {
             public string Nom { get; set; }
+            public string Type { get; set; }
             public int Puissance { get; set; }
 
-            public Attaque(string nom, int puissance)
+            public int Precision { get; set; }
+            public string Category { get; set; }
+
+
+
+            public Capacite(string nom,string type, int puissance, int precision, string category)
             {
                 Nom = nom;
+                Type = type;
                 Puissance = puissance;
+                Precision = precision;
+                Category = category;
             }
         }
 
@@ -124,8 +146,15 @@ namespace CombatLoader
                 List<Pokemon> listePokemon = new List<Pokemon>();
 
 
-                listePokemon.Add(new Pokemon("Pikachu", 100, new List<Attaque> { new Attaque("Éclair", 20), new Attaque("Queue de fer", 15) }));
-                listePokemon.Add(new Pokemon("Bulbizarre", 120, new List<Attaque> { new Attaque("Fouet lianes", 18), new Attaque("Vampigraine", 12) }));
+                listePokemon.Add(new Pokemon("Bulbasaur", "Grass/Poison", 45, 49, 49, 65, 65, 45, new List<Capacite> { new Capacite("Tackle", "Normal", 40, 100, "Physical"), new Capacite("Growl", "Normal", 0, 100, "Status") }));
+                listePokemon.Add(new Pokemon("Ivysaur", "Grass/Poison", 60, 62, 63, 80, 80, 60, new List<Capacite> { new Capacite("Vine Whip", "Grass", 45, 100, "Physical"), new Capacite("Take Down", "Normal", 90, 85, "Physical") }));
+                listePokemon.Add(new Pokemon("Venusaur", "Grass/Poison", 80, 82, 83, 100, 100, 80, new List<Capacite> { new Capacite("Petal Blizzard", "Grass", 90, 100, "Physical"), new Capacite("Earthquake", "Ground", 100, 100, "Physical") }));
+                listePokemon.Add(new Pokemon("Charmander", "Fire", 39, 52, 43, 60, 50, 65, new List<Capacite> { new Capacite("Scratch","Normal",40,100,"Physical"), new Capacite("Earthquake", "Ground", 100, 100, "Physical") }));
+                listePokemon.Add(new Pokemon("Charmeleon", "Fire", 58, 64, 58, 80, 65, 80, new List<Capacite> { new Capacite("Flamethrower", "Fire", 90, 100, "Special"), new Capacite("Smokescreen", "Normal", 0, 100, "Status") }));
+                listePokemon.Add(new Pokemon("Charizard", "Fire/Flying", 78, 84, 78, 109, 85, 100, new List<Capacite> { new Capacite("Fire Spin", "Fire", 35, 85, "Special"), new Capacite("Air Slash", "Flying", 75, 95, "Special") }));
+                listePokemon.Add(new Pokemon("Squirtle", "Water", 44, 48, 65, 50, 64, 43, new List<Capacite> { new Capacite("Tackle", "Normal", 40, 100, "Physical"), new Capacite("Bubble", "Water", 40, 100, "Special") }));
+                listePokemon.Add(new Pokemon("Wartortle", "Water", 59, 63, 80, 65, 80, 58, new List<Capacite> { new Capacite("Bite", "Dark", 60, 100, "Physical"), new Capacite("Water Pulse", "Water", 60, 100, "Special") }));
+                listePokemon.Add(new Pokemon("Blastoise", "Water", 79, 83, 100, 85, 105, 78, new List<Capacite> { new Capacite("Ice Beam", "Ice", 90, 100, "Special"), new Capacite("Hydro Pump", "Water", 110, 80, "Special") }));
                 // ... Ajoutez d'autres Pokémon de la même manière
 
                 return listePokemon;
@@ -137,13 +166,13 @@ namespace CombatLoader
 
             for (int i = 0; i < 1; i++)
             {
-                int choixAttaque = random.Next(1, pokemon.Attaques.Count + 1);
+                int choixCapacite = random.Next(1, pokemon.Capacites.Count + 1);
 
                 // Appliquer les dégâts au joueur
-                int degatsAttaque = pokemon.Attaques[choixAttaque - 1].Puissance;
-                degatsInfliges += degatsAttaque;
-                Console.WriteLine($"{pokemon.Nom} a utilisé {pokemon.Attaques[choixAttaque - 1].Nom} !");
-                Console.WriteLine($"{pokemon.Nom} a infligé {degatsAttaque} points de dégâts.");
+                int degatsCapacite = pokemon.Capacites[choixCapacite - 1].Puissance;
+                degatsInfliges += degatsCapacite;
+                Console.WriteLine($"{pokemon.Nom} a utilisé {pokemon.Capacites[choixCapacite - 1].Nom} !");
+                Console.WriteLine($"{pokemon.Nom} a infligé {degatsCapacite} points de dégâts.");
             }
 
             // En supposant que le joueur a 100 points de vie initiaux
@@ -155,5 +184,52 @@ namespace CombatLoader
                 Console.WriteLine($"Vous avez été vaincu par le {pokemon.Nom} sauvage !");
             }
         }
-    }   
+        public class TypeEffectiveness
+        {
+            private Dictionary<string, List<string>> effectivenessChart;
+
+            public TypeEffectiveness()
+            {
+                effectivenessChart = new Dictionary<string, List<string>>
+                {
+                { "Fire", new List<string> { "Grass", "Ice", "Bug", "Steel" } },
+                { "Water", new List<string> { "Fire", "Ground", "Rock" } },
+                { "Electric", new List<string> { "Water", "Flying" } },
+                { "Grass", new List<string> { "Water", "Ground", "Rock" } },
+                { "Ice", new List<string> { "Grass", "Ground", "Flying", "Dragon" } },
+                { "Fighting", new List<string> { "Normal", "Ice", "Rock", "Dark", "Steel" } },
+                { "Poison", new List<string> { "Grass", "Fairy" } },
+                { "Ground", new List<string> { "Fire", "Electric", "Poison", "Rock", "Steel" } },
+                { "Flying", new List<string> { "Grass", "Fighting", "Bug" } },
+                { "Psychic", new List<string> { "Fighting", "Poison" } },
+                { "Bug", new List<string> { "Grass", "Psychic", "Dark" } },
+                { "Rock", new List<string> { "Fire", "Ice", "Flying", "Bug" } },
+                { "Ghost", new List<string> { "Psychic", "Ghost" } },
+                { "Dragon", new List<string> { "Dragon" } },
+                { "Dark", new List<string> { "Psychic", "Ghost" } },
+                { "Steel", new List<string> { "Ice", "Rock", "Fairy" } },
+                { "Fairy", new List<string> { "Fighting", "Dragon", "Dark" } }
+                };
+            }
+
+            public bool IsSuperEffective(string attackingType, string defendingTypes)
+            {
+                // Séparation des types du défenseur s'il y en a plusieurs
+                var types = defendingTypes.Split('/');
+
+                // Vérification pour chaque type de défense
+                foreach (var type in types)
+                {
+                    if (effectivenessChart.ContainsKey(attackingType) && effectivenessChart[attackingType].Contains(type))
+                    {
+                        return true; // Retourne vrai si l'attaque est super efficace contre au moins un des types
+                    }
+                }
+
+                return false; // Retourne faux si l'attaque n'est super efficace contre aucun des types
+            }
+        }
+    }
+
+      
 }
