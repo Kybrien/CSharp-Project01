@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Display;
 using SaveEditor;
 using SoundLoader;
+using CombatLoader;
+using LoadingScreen;
 
 namespace InputLoader
 {
@@ -21,6 +23,10 @@ namespace InputLoader
                     Menu.ShowLoadingScreen("Lancement de la partie..", 500);
                     Menu.ShowLoadingScreen("Lancement de la partie...", 500);
                     Console.Clear();
+                    if (Program.currentMapIndex == 0)
+                    {
+                        Loading_Screen.Little_Woods();
+                    }
                     Program.PlayGame();
                     break;
                 case '2':
@@ -145,7 +151,7 @@ namespace InputLoader
                 // Vérifier spécifiquement si le joueur est sur une case avec des hautes herbes
                 if (carte[newPosY, newPosX] == 'H')
                 {
-                    Program.LancerCombatSiRencontrePokemon(carte);
+                    Combat.LancerCombatSiRencontrePokemon(carte, newPosX, newPosY);
 
                 }
                 if (carte[newPosY, newPosX] == '┼')
