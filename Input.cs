@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CombatLoader;
 using Display;
+using LoadingScreen;
 using SaveEditor;
 using SoundLoader;
-using CombatLoader;
-using LoadingScreen;
 
 namespace InputLoader
 {
     public class Input
     {
+        public static bool isSurfing = false;
         public static void ProcessChoice(char choice, char[,] carte)
         {
             switch (choice)
@@ -82,7 +77,7 @@ namespace InputLoader
                     Menu.ShowLoadingScreen("Difficulte difficile selectionnée...", 500);
                     break;
                 case '4':
-                    Menu.main_menu(); 
+                    Menu.main_menu();
                     break;
                 default:
                     Console.WriteLine("Difficulte actuelle : Aucune");
@@ -142,6 +137,14 @@ namespace InputLoader
 
             }
         }
+
+        public static bool ChoiceSurf()
+        {
+            Console.WriteLine("Voulez-vous utiliser Surf? (O/N)");
+            char choice = Console.ReadKey().KeyChar;
+            Console.WriteLine(); // Ajoute une nouvelle ligne pour une meilleure lisibilité
+            return choice == 'O' || choice == 'o';
+        }
         private static void MovePlayerIfValid(int deltaY, int deltaX, char[,] carte)
         {
             int newPosY = Program.posY + deltaY;
@@ -152,44 +155,58 @@ namespace InputLoader
                 // Vérifier spécifiquement si le joueur est sur une case avec des hautes herbes
                 if (carte[newPosY, newPosX] == 'H')
                 {
+                    Program.posX = newPosX;
+                    Program.posY = newPosY;
+                    if (isSurfing == true)
+                    {
+                        isSurfing = false;
+                    }
                     Combat.LancerCombatSiRencontrePokemon(carte, newPosX, newPosY);
-
+                    // Vous pouvez ajouter ici tout code supplémentaire nécessaire lorsque le joueur se déplace sur une case 'H'
                 }
-                if (carte[newPosY, newPosX] == '┼')
+                else if (carte[newPosY, newPosX] == '┼')
                 {
                     Program.posX = newPosX;
                     Program.posY = newPosY;
                     Program.PickUpItem(carte);
                 }
-                if (carte[newPosY, newPosX] == '~')
+                else if (carte[newPosY, newPosX] == '~' && isSurfing == false)
                 {
-                    /*SurfChoice();*/
+                    if (ChoiceSurf()) // Demande à l'utilisateur s'il veut utiliser Surf
+                    {
+                        isSurfing = true;
+                        // Si l'utilisateur choisit d'utiliser Surf, déplace le joueur sur la case '~'
+                        Program.posX = newPosX;
+                        Program.posY = newPosY;
+                    }
                 }
-                // On change de map si on rencontre un symbole de changement de map
-                if (carte[newPosY, newPosX] == '►')
+                else if (carte[newPosY, newPosX] == '~' && isSurfing == true)
+                {
+                    Program.posX = newPosX;
+                    Program.posY = newPosY;
+                }
+                else if (carte[newPosY, newPosX] == ' ' || carte[newPosY, newPosX] == '►' || carte[newPosY, newPosX] == '◄' || carte[newPosY, newPosX] == '*')
+                {
+                    Program.posY = newPosY;
+                    Program.posX = newPosX;
+                    if (carte[newPosY, newPosX] == ' ' && isSurfing == true)
+                    {
+                        isSurfing = false;
+                    }
+                }
+
+                // Gérer le changement de carte
+                if (carte[Program.posY, Program.posX] == '►' || carte[Program.posY, Program.posX] == '◄')
                 {
                     carte = Map.ChangeMap(carte);
                     Map.AfficherCarte(carte);
                 }
-                if (carte[newPosY, newPosX] == '◄')
-                {
-                    carte = Map.ChangeMap(carte);
-                    Map.AfficherCarte(carte);
-                }
-                Program.posY = newPosY;
-                Program.posX = newPosX;
             }
         }
-        /*public static bool SurfChoice()
-        {
-            Console.WriteLine("Voulez-vous utiliser Surf? (O/N)");
-            char choice = Console.ReadKey().KeyChar;
-            return choice == 'O' || choice == 'o';
-        }*/
 
         private static bool IsValidMove(int y, int x, char[,] carte)
         {
-            return y >= 0 && y < carte.GetLength(0) && x >= 0 && x < carte.GetLength(1) && carte[y, x] == ' ' || carte[y, x] == 'H' || carte[y, x] == '►' || carte[y, x] == '◄' || carte[y, x] == '┼' || carte[y, x] == '*';
+            return y >= 0 && y < carte.GetLength(0) && x >= 0 && x < carte.GetLength(1) && (carte[y, x] == ' ' || carte[y, x] == 'H' || carte[y, x] == '►' || carte[y, x] == '◄' || carte[y, x] == '┼' || carte[y, x] == '*' || carte[y, x] == '~');
         }
     }
 }

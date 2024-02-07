@@ -1,12 +1,10 @@
-﻿using System;
-using System.Threading;
-using System.Collections.Generic;
-using System.IO;
+﻿using CombatLoader;
 using Display;
-using SaveEditor;
 using InputLoader;
+using SaveEditor;
 using SoundLoader;
-using CombatLoader;
+using System;
+using System.Collections.Generic;
 
 class Program
 {
@@ -84,5 +82,4 @@ class Program
             carte[posY, posX] = '*';
         }
     }
-
 }
