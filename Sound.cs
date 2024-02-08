@@ -16,10 +16,14 @@ namespace SoundLoader
             {
                 StopMusic(); // Arrête et libère les ressources de la musique précédente
 
-                audioFileReader = new AudioFileReader(filePath);
-                waveOutDevice = new WaveOutEvent();
-                waveOutDevice.Init(audioFileReader);
-                waveOutDevice.Play();
+                try
+                {
+                    audioFileReader = new AudioFileReader(filePath);
+                    waveOutDevice = new WaveOutEvent();
+                    waveOutDevice.Init(audioFileReader);
+                    waveOutDevice.Play();
+                }
+                catch (Exception){}
             }
         }
 
