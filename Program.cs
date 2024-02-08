@@ -1,11 +1,10 @@
-﻿using System;
-using System.Threading;
-using System.Collections.Generic;
-using System.IO;
+﻿using CombatLoader;
 using Display;
-using SaveEditor;
 using InputLoader;
-using CombatLoader;
+using SaveEditor;
+using SoundLoader;
+using System;
+using System.Collections.Generic;
 
 class Program
 {
@@ -53,6 +52,7 @@ class Program
     public static void PlayGame()
     {
         Map.AfficherCarte(currentMap);
+        Sound.ChangeMusicBasedOnMap(currentMapIndex);
 
         ConsoleKeyInfo keyInfo;
         do
@@ -70,6 +70,7 @@ class Program
                 // Faites quelque chose avec le choix d'attaque, par exemple, appliquer des dégâts à l'adversaire
             }
         } while (keyInfo.Key != ConsoleKey.Escape);
+
     }
 
 
@@ -82,10 +83,5 @@ class Program
             Console.WriteLine("\nVous avez ramassé l'objet.");
             carte[posY, posX] = '*';
         }
-    }
-    public static void UpdatePlayerPosition(int x, int y)
-    {
-        posX = x;
-        posY = y;
     }
 }

@@ -8,6 +8,7 @@ namespace SaveEditor
     //Sauvegarder la partie
     public class Save
     {
+        public static bool IsIntroductionPlayed { get; set; } = false;
         public static void SaveGame()
         {
             string filePath = Path.Combine(Environment.CurrentDirectory, "save.txt");
