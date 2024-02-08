@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Biblio;
-
-namespace Anim
+﻿namespace Anim
 {
     public class Animation
     {
@@ -81,7 +74,7 @@ namespace Anim
             {
                 Console.Clear();
                 Console.WriteLine(frame);
-                Thread.Sleep(500); // Delay between frames
+                Thread.Sleep(200); // Delay between frames
             }
 
         }

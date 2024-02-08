@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static CombatLoader.Combat;
-
-namespace Biblio
+﻿namespace Biblio
 {
     public static class BibliothequePokemon
     {
         public static List<Pokemon> GetListePokemon()
         {
             List<Pokemon> listePokemon = new List<Pokemon>();
-
 
             listePokemon.Add(new Pokemon("Bulbasaur", "Grass/Poison", 45, 49, 49, 65, 65, 45, new List<Capacite> { new Capacite("Tackle", "Normal", 40, 100, "Physical"), new Capacite("Growl", "Normal", 0, 100, "Status") }));
             listePokemon.Add(new Pokemon("Ivysaur", "Grass/Poison", 60, 62, 63, 80, 80, 60, new List<Capacite> { new Capacite("Vine Whip", "Grass", 45, 100, "Physical"), new Capacite("Take Down", "Normal", 90, 85, "Physical") }));
@@ -81,11 +73,8 @@ namespace Biblio
         public string Nom { get; set; }
         public string Type { get; set; }
         public int Puissance { get; set; }
-
         public int Precision { get; set; }
         public string Category { get; set; }
-
-
 
         public Capacite(string nom, string type, int puissance, int precision, string category)
         {

@@ -63,6 +63,20 @@ namespace SoundLoader
                     return "OST_56.wav";
                 case 6:
                     return "Introduction.wav";
+                case 7:
+                    return "Earthquake.wav";
+                case 8:
+                    return "Combat_12.wav";
+                case 9:
+                    return "Combat_34.wav";
+                case 10:
+                    return "Combat_56.wav";
+                case 11:
+                    return "Combat_Boss.wav";
+                case 12:
+                    return "OST_End.wav";
+                case 13:
+                    return "GameOver.wav";
                 default:
                     return "";
             }

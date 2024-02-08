@@ -1,10 +1,4 @@
 ﻿using Biblio;
-using Effectiveness;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoveControl
 {
@@ -15,39 +9,37 @@ namespace MoveControl
             Random rand = new Random();
             int randomChance = rand.Next(100);
             string cat = attackAbility.Category;
-            Console.WriteLine($"capacité : {attackAbility.Nom}");
+            Console.WriteLine($"Capacités : {attackAbility.Nom}");
             switch (cat)
             {
                 case "Physical":
                     int damage = (attackAbility.Puissance + attacker.Attack) * 5 / defender.Defense + 10;
-                    Console.WriteLine($"{attacker.Nom} attaque !");
+                    Console.WriteLine($"\n------------\n{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
                         //if (TypeEffectiveness.IsSuperEffective(attackAbility.Type, defender.Type))
                         {
 
                         }
-                        Console.WriteLine($"{defender.Nom} a subi {damage} dommages.");
-
+                        Console.WriteLine($"{defender.Nom} a subi {damage} dommages.\n------------");
                         defender.TakeDamage(damage);
-
                     }
                     else
                     {
-                        Console.WriteLine("L'attaque a échoué !");
+                        Console.WriteLine("\n[- L'attaque a échoué ! -]\n");
                     }
                     break;
                 case "Special":
                     int spe_damage = (attackAbility.Puissance + attacker.SpecialAttack) * 5 / defender.SpecialDefense + 10;
-                    Console.WriteLine($"{attacker.Nom} attaque !");
+                    Console.WriteLine($"\n------------\n{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
-                        Console.WriteLine($"{defender.Nom} a subi {spe_damage} dommages.");
+                        Console.WriteLine($"{defender.Nom} a subi {spe_damage} dommages.\n------------");
                         defender.TakeDamage(spe_damage);
                     }
                     else
                     {
-                        Console.WriteLine("L'attaque a échoué !");
+                        Console.WriteLine("\n[- L'attaque a échoué ! -]\n");
                     }
                     break;
                 case "Status":
@@ -55,29 +47,28 @@ namespace MoveControl
                     switch (stat)
                     {
                         case 1:
-                            Console.WriteLine("l'attaque adverse est réduite");
+                            Console.WriteLine("\n-----\nL'attaque adverse est réduite\n-----");
                             defender.Attack -= 10;
                             break;
                         case 2:
-                            Console.WriteLine("La défense adverse est réduite");
+                            Console.WriteLine("\n-----\nLa défense adverse est réduite\n-----");
                             defender.Defense -= 10;
                             break;
                         case 3:
-                            Console.WriteLine("l'attaque spéciale adverse est réduite");
+                            Console.WriteLine("\n-----\nL'attaque spéciale adverse est réduite\n-----");
                             defender.SpecialAttack -= 10;
                             break;
                         case 4:
-                            Console.WriteLine("la défense spéciale adverse est réduite");
+                            Console.WriteLine("\n-----\nLa défense spéciale adverse est réduite\n-----");
                             defender.SpecialDefense -= 10;
                             break;
                         case 5:
-                            Console.WriteLine("La vitesse adverse est réduite");
+                            Console.WriteLine("\n-----\nLa vitesse adverse est réduite\n-----");
                             defender.Speed -= 10;
                             break;
                     }
 
-
-
+                    Console.Clear();
                     break;
             }
 
@@ -88,20 +79,20 @@ namespace MoveControl
             Random rand = new Random();
             int randomChance = rand.Next(100);
             string cat = attackAbility.Category;
-            Console.WriteLine($"capacité : {attackAbility.Nom}");
+            Console.WriteLine($"Capacités : {attackAbility.Nom}");
             switch (cat)
             {
                 case "Physical":
                     int damage = (attackAbility.Puissance + attacker.Attack) * 5 / defender.Defense + 10;
-                    Console.WriteLine($"{attacker.Nom} attaque !");
+                    Console.WriteLine($"\n------------\n{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
-                        Console.WriteLine($"{defender.Nom} a subi {damage} dommages.");
+                        Console.WriteLine($"{defender.Nom} a subi {damage} dommages.\n------------");
                         defender.TakeDamage(damage);
                     }
                     else
                     {
-                        Console.WriteLine("L'attaque a échoué !");
+                        Console.WriteLine("\n[- L'attaque a échoué ! -]\n");
                     }
                     break;
                 case "Special":
@@ -109,12 +100,12 @@ namespace MoveControl
                     Console.WriteLine($"{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
-                        Console.WriteLine($"{defender.Nom} a subi {spe_damage} dommages.");
+                        Console.WriteLine($"{defender.Nom} a subi {spe_damage} dommages.\n------------");
                         defender.TakeDamage(spe_damage);
                     }
                     else
                     {
-                        Console.WriteLine("L'attaque a échoué !");
+                        Console.WriteLine("\n[- L'attaque a échoué ! -]\n");
                     }
                     break;
                 case "Status":
@@ -122,23 +113,23 @@ namespace MoveControl
                     switch (stat)
                     {
                         case 1:
-                            Console.WriteLine("l'attaque adverse est réduite");
+                            Console.WriteLine("\n-----\nL'attaque adverse est réduite\n-----");
                             defender.Attack -= 10;
                             break;
                         case 2:
-                            Console.WriteLine("La défense adverse est réduite");
+                            Console.WriteLine("\n-----\nLa défense adverse est réduite\n-----");
                             defender.Defense -= 10;
                             break;
                         case 3:
-                            Console.WriteLine("l'attaque spéciale adverse est réduite");
+                            Console.WriteLine("\n-----\nL'attaque spéciale adverse est réduite\n-----");
                             defender.SpecialAttack -= 10;
                             break;
                         case 4:
-                            Console.WriteLine("la défense spéciale adverse est réduite");
+                            Console.WriteLine("\n-----\nLa défense spéciale adverse est réduite\n-----");
                             defender.SpecialDefense -= 10;
                             break;
                         case 5:
-                            Console.WriteLine("La vitesse adverse est réduite");
+                            Console.WriteLine("\n-----\nLa vitesse adverse est réduite\n-----");
                             defender.Speed -= 10;
                             break;
                     }
