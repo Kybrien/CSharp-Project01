@@ -14,21 +14,12 @@ namespace CombatLoader
     public class Combat
     {
         public static bool fight_end { get; set; } = false;
-        public static int pvRencontre { get; set; } = 0;
         public static Random random2 = new Random();
 
         public static List<Pokemon> listePokemon = BibliothequePokemon.GetListePokemon();
         public static Pokemon pokemonJoueur = listePokemon[random2.Next(listePokemon.Count)];
-        public static int pvPlayer { get; set; } = pokemonJoueur.PointsDeVie + 50;
 
-        public static void TakeDamageJ(Pokemon pokemon,int damage)
-        {
-            pokemon.pointsDeVieRestantsPlayer -= damage;
-        }
-        public static void TakeDamageR(Pokemon pokemon, int damage)
-        {
-            pokemon.pointsDeVieRestantsRencontre -= damage;
-        }
+
 
         public static class BibliothequePokemon
         {
@@ -75,6 +66,9 @@ namespace CombatLoader
 
                     //int pointsDeVieRestantsPlayer = pokemonJoueur.PointsDeVie + 50;
                     //int pointsDeVieRestantsRencontre = pokemonRencontre.PointsDeVie;
+                    int pvMaxRencontre = pokemonRencontre.PointsDeVie;
+                    int pvMaxJoueur = pokemonJoueur.PointsDeVie;
+
                     Console.WriteLine("Vous avez rencontré un Pokémon sauvage !");
                     Console.WriteLine();
                     Console.WriteLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
@@ -91,8 +85,8 @@ namespace CombatLoader
                     {
                         Console.WriteLine();
 
-                        Console.WriteLine($"Points de vie {pokemonRencontre.Nom}: {pokemonRencontre.pointsDeVieRestantsRencontre}/{pokemonRencontre.PointsDeVie}");
-                        Console.WriteLine($"Points de vie {pokemonJoueur.Nom}: {pokemonJoueur.pointsDeVieRestantsPlayer}/{pokemonJoueur.PointsDeVie + 50}");
+                        Console.WriteLine($"Points de vie {pokemonRencontre.Nom}: {pokemonRencontre.PointsDeVie}/{pvMaxRencontre}");
+                        Console.WriteLine($"Points de vie {pokemonJoueur.Nom}: {pokemonJoueur.PointsDeVie}/{pvMaxJoueur}");
 
 
 
@@ -103,7 +97,7 @@ namespace CombatLoader
                         ManageMoveJ(pokemonJoueur,pokemonRencontre,pokemonJoueur.Capacites[choixCapacite - 1]);
 
 
-                        if (pokemonRencontre.pointsDeVieRestantsRencontre < 0)
+                        if (pokemonRencontre.PointsDeVie < 0)
                         {
                             Console.WriteLine($"Le {pokemonRencontre.Nom} sauvage a été vaincu !");
                             Thread.Sleep(500);
@@ -136,7 +130,7 @@ namespace CombatLoader
                         if (randomChance <= attackAbility.Precision)
                         {
                             Console.WriteLine($"{defender.Nom} a subi {damage} dommages.");
-                        TakeDamageR(defender,damage);
+                        defender.TakeDamage(damage);
                         }
                         else
                         {
@@ -149,7 +143,7 @@ namespace CombatLoader
                     if (randomChance <= attackAbility.Precision)
                     {
                         Console.WriteLine($"{defender.Nom} a subi {spe_damage} dommages.");
-                        TakeDamageR(defender, spe_damage);
+                        defender.TakeDamage(spe_damage);
                     }
                     else
                     {
@@ -203,7 +197,7 @@ namespace CombatLoader
                     if (randomChance <= attackAbility.Precision)
                     {
                         Console.WriteLine($"{defender.Nom} a subi {damage} dommages.");
-                        TakeDamageJ(defender,damage);
+                        defender.TakeDamage(damage);
                     }
                     else
                     {
@@ -216,7 +210,7 @@ namespace CombatLoader
                     if (randomChance <= attackAbility.Precision)
                     {
                         Console.WriteLine($"{defender.Nom} a subi {spe_damage} dommages.");
-                        TakeDamageJ(defender, spe_damage);
+                        defender.TakeDamage(spe_damage);
                     }
                     else
                     {
@@ -287,8 +281,7 @@ namespace CombatLoader
             public int SpecialAttack;
             public int SpecialDefense;
             public int Speed;
-            public int pointsDeVieRestantsRencontre { get; set; } = pvRencontre;
-            public int pointsDeVieRestantsPlayer { get; set; } = pvPlayer;
+
 
             public int Potion { get; set; } = 5;
             public List<Capacite> Capacites { get; set; }
@@ -310,6 +303,12 @@ namespace CombatLoader
             {
                 Console.WriteLine($"{pokemon.Nom} - \nHP: {pokemon.PointsDeVie}\nType : {pokemon.Type}\nAttack: {pokemon.Attack}\nDefense: {pokemon.Defense}\nSpecial Attack: {pokemon.SpecialAttack}\nSpecial Defense: {pokemon.SpecialDefense}\nSpeed: {pokemon.Speed}");
             }
+            public int TakeDamage(int damage)
+            {
+                PointsDeVie -= damage;
+                return PointsDeVie;
+            }
+
         }
 
         public class Capacite
@@ -350,7 +349,7 @@ namespace CombatLoader
 
 
 
-            if (pvRencontre == 0)
+            if (pokemonJoueur.PointsDeVie == 0)
             {
                 Console.WriteLine($"Vous avez été vaincu par le {pokemon_attacker.Nom} sauvage !");
             }
