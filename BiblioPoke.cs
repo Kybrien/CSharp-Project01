@@ -58,7 +58,7 @@ namespace Biblio
         }
         public void UsePotion()
         {
-            PointsDeVie = ;
+            PointsDeVie += 30 ;
             Console.WriteLine("Vous avez soigné 30 PV.");
             Potion--;
             Console.WriteLine($"Il vous reste {Potion} potions.");

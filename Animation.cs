@@ -9,7 +9,7 @@ namespace Anim
 {
     public class Animation
     {
-        static void Fight_Anim(Pokemon pokemon)
+        public static void Fight_Anim()
         {
             string[] frames = new string[]
             {
@@ -71,7 +71,7 @@ namespace Anim
             @$"
                           ┌───────────────┐
                           │               │
-                          │ WILD {pokemon.Nom}  │
+                          │ WILD POKEMON  │
                           │   APPEARS!    │
                           └───────────────┘
             "

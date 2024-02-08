@@ -10,6 +10,7 @@ using Effectiveness;
 using static CombatLoader.Combat;
 using Biblio;
 using MoveControl;
+using Anim;
 namespace CombatLoader
 {
     public class Combat
@@ -40,7 +41,7 @@ namespace CombatLoader
                     int pvMaxRencontre = pokemonRencontre.PointsDeVie;
                     int pvMaxJoueur = pokemonJoueur.PointsDeVie;
 
-                    Fight_Anim(pokemonRencontre);
+                    Animation.Fight_Anim();
                     Console.WriteLine();
                     Console.WriteLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
 
@@ -154,82 +155,9 @@ namespace CombatLoader
 
 
         }
-        static void Fight_Anim(Pokemon pokemon)
-        {
-            string[] frames = new string[]
-            {
-@"
-            ┌────────────────────────────────────────┐
-            │                                        │
-            │                                        │
-            │                                        │
-            │                                        │
-            │                                        │
-            │                                        │
-            │                                        │
-            └────────────────────────────────────────┘
-            ",
-            @"
-            ┌────────────────────────────────────────┐
-            │                  |                     │
-            │                  |                     │
-            │                  |                     │
-            │                  |                     │
-            │                  |                     │
-            │                  |                     │
-            │                  |                     │
-            └────────────────────────────────────────┘
-            ",
-            @"
-            ┌────────────────────────────────────────┐
-            │              | | | | |                 │
-            │              | | | | |                 │
-            │              | | | | |                 │
-            │              | | | | |                 │
-            │              | | | | |                 │
-            │              | | | | |                 │
-            │              | | | | |                 │
-            └────────────────────────────────────────┘
-            ",
-            @"
-            ┌────────────────────────────────────────┐
-            │        | | | | | | | | | | | |         │
-            │        | | | | | | | | | | | |         │
-            │        | | | | | | | | | | | |         │
-            │        | | | | | | | | | | | |         │
-            │        | | | | | | | | | | | |         │
-            │        | | | | | | | | | | | |         │
-            │        | | | | | | | | | | | |         │
-            └────────────────────────────────────────┘
-            ",
-            @"
-            ┌────────────────────────────────────────┐
-            │ | | | | | | | | | | | | | | | | | | | ││ 
-            │ | | | | | | | | | | | | | | | | | | | ││ 
-            │ | | | | | | | | | | | | | | | | | | | ││
-            │ | | | | | | | | | | | | | | | | | | | ││
-            │ | | | | | | | | | | | | | | | | | | | ││
-            │ | | | | | | | | | | | | | | | | | | | ││
-            │ | | | | | | | | | | | | | | | | | | | ││
-            └────────────────────────────────────────┘
-            ",
-            @$"
-                          ┌───────────────┐
-                          │               │
-                          │ WILD {pokemon.Nom}  │
-                          │   APPEARS!    │
-                          └───────────────┘
-            "
-            };
+        
 
-            foreach (string frame in frames)
-            {
-                Console.Clear();
-                Console.WriteLine(frame);
-                Thread.Sleep(500); // Delay between frames
-            }
-
-        }
+        
 
     }
 
