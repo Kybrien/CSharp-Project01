@@ -8,7 +8,7 @@ namespace Effectiveness
 {
     public class TypeEffectiveness
     {
-        private Dictionary<string, List<string>> effectivenessChart;
+        public Dictionary<string, List<string>> effectivenessChart;
 
         public TypeEffectiveness()
         {
