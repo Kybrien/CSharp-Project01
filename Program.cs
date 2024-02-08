@@ -63,7 +63,7 @@ class Program
             Map.AfficherCarte(currentMap);
 
             // Vérifier si le joueur a rencontré un Pokémon
-            if (Combat.APokemonRencontre)
+            if (Combat.fight_end)
             {
                 Combat.AfficherCapacitesJoueur(new Combat.Pokemon("","",0,0,0,0,0, 0, new List<Combat.Capacite>()));
                 int choixAttaque = Combat.DemanderChoixCapacite(0);

@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -81,7 +81,7 @@ namespace fight
         public int GetSpecialDefense() => specialDefense;
     }
 
-        public class Ability
+    public class Ability
     {
         private string name;
         private int power;
@@ -180,8 +180,8 @@ namespace fight
                         int speed = int.Parse(parts[7]);
 
 
-                        Pokemon pokemon = new Pokemon(name, type, hp, attack, defense, specialAttack, specialDefense, speed);
-                        pokemons.Add(pokemon);
+                        //Pokemon pokemon = new Pokemon(name, type, hp, attack, defense, specialAttack, specialDefense, speed);
+                        //pokemons.Add(pokemon);
                     }
                 }
             }
@@ -278,6 +278,8 @@ namespace fight
 
 
         }
+    }
+}
         /*public class BibliothequePokemon
         {
             string pokemonFilePath = "Pokedico.txt"; // Chemin du fichier des Pokémon
