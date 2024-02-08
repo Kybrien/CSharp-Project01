@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Display;
 using fight;
+using Effectiveness;
 using static CombatLoader.Combat;
 
 namespace CombatLoader
@@ -83,6 +84,29 @@ namespace CombatLoader
                     // Combat
                     while (fight_end)
                     {
+                        if (pokemonJoueur.PointsDeVie < 0)
+                        {
+                            Console.WriteLine($"Vous avez été vaincu par le {pokemonRencontre.Nom} sauvage !");
+                            Console.WriteLine();
+                            Console.WriteLine("votre Pokémon est soignée");
+                            pokemonJoueur.PointsDeVie = pvMaxJoueur;
+                            Thread.Sleep(500);
+
+                            fight_end = false;
+                            break;
+                        }
+                        if (pokemonRencontre.PointsDeVie < 0)
+                        {
+                            Console.WriteLine($"Vous avez vaincu le {pokemonRencontre.Nom} sauvage !");
+                            Console.WriteLine() ;
+                            Console.WriteLine("votre Pokémon est soignée");
+                            pokemonJoueur.PointsDeVie = pvMaxJoueur;
+                            Thread.Sleep(500);
+
+                            fight_end = false;
+
+                            break;
+                        }
                         Console.WriteLine();
 
                         Console.WriteLine($"Points de vie {pokemonRencontre.Nom}: {pokemonRencontre.PointsDeVie}/{pvMaxRencontre}");
@@ -96,14 +120,6 @@ namespace CombatLoader
                         int choixCapacite = DemanderChoixCapacite(pokemonJoueur.Capacites.Count);
                         ManageMoveJ(pokemonJoueur,pokemonRencontre,pokemonJoueur.Capacites[choixCapacite - 1]);
 
-
-                        if (pokemonRencontre.PointsDeVie < 0)
-                        {
-                            Console.WriteLine($"Le {pokemonRencontre.Nom} sauvage a été vaincu !");
-                            Thread.Sleep(500);
-                            fight_end = false;
-                            break;
-                        }
 
                         // Tour du Pokémon sauvage
                         Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
@@ -125,11 +141,11 @@ namespace CombatLoader
                 switch (cat)
                 {
                     case "Physical":
-                        int damage = (attackAbility.Puissance + attacker.Attack) / defender.Defense + 10;
+                        int damage = (attackAbility.Puissance + attacker.Attack) * 5  / defender.Defense + 10;
                         Console.WriteLine($"{attacker.Nom} attaque !");
                         if (randomChance <= attackAbility.Precision)
                         {
-                            Console.WriteLine($"{defender.Nom} a subi {damage} dommages.");
+                         Console.WriteLine($"{defender.Nom} a subi {damage} dommages.");
                         defender.TakeDamage(damage);
                         }
                         else
@@ -138,7 +154,7 @@ namespace CombatLoader
                         }
                         break;
                     case "Special":
-                        int spe_damage = (attackAbility.Puissance + attacker.SpecialAttack) / defender.SpecialDefense + 10 ;
+                        int spe_damage = (attackAbility.Puissance + attacker.SpecialAttack) * 5 / defender.SpecialDefense + 10 ;
                     Console.WriteLine($"{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
@@ -192,7 +208,7 @@ namespace CombatLoader
             switch (cat)
             {
                 case "Physical":
-                    int damage = (attackAbility.Puissance + attacker.Attack) / defender.Defense +10;
+                    int damage = (attackAbility.Puissance + attacker.Attack) * 5 / defender.Defense +10;
                     Console.WriteLine($"{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
@@ -205,7 +221,7 @@ namespace CombatLoader
                     }
                     break;
                 case "Special":
-                    int spe_damage = (attackAbility.Puissance + attacker.SpecialAttack) / defender.SpecialDefense +10;
+                    int spe_damage = (attackAbility.Puissance + attacker.SpecialAttack) * 5 / defender.SpecialDefense +10;
                     Console.WriteLine($"{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
@@ -349,56 +365,9 @@ namespace CombatLoader
 
 
 
-            if (pokemonJoueur.PointsDeVie == 0)
-            {
-                Console.WriteLine($"Vous avez été vaincu par le {pokemon_attacker.Nom} sauvage !");
-            }
+
         }
-        public class TypeEffectiveness
-        {
-            private Dictionary<string, List<string>> effectivenessChart;
-
-            public TypeEffectiveness()
-            {
-                effectivenessChart = new Dictionary<string, List<string>>
-                {
-                { "Fire", new List<string> { "Grass", "Ice", "Bug", "Steel" } },
-                { "Water", new List<string> { "Fire", "Ground", "Rock" } },
-                { "Electric", new List<string> { "Water", "Flying" } },
-                { "Grass", new List<string> { "Water", "Ground", "Rock" } },
-                { "Ice", new List<string> { "Grass", "Ground", "Flying", "Dragon" } },
-                { "Fighting", new List<string> { "Normal", "Ice", "Rock", "Dark", "Steel" } },
-                { "Poison", new List<string> { "Grass", "Fairy" } },
-                { "Ground", new List<string> { "Fire", "Electric", "Poison", "Rock", "Steel" } },
-                { "Flying", new List<string> { "Grass", "Fighting", "Bug" } },
-                { "Psychic", new List<string> { "Fighting", "Poison" } },
-                { "Bug", new List<string> { "Grass", "Psychic", "Dark" } },
-                { "Rock", new List<string> { "Fire", "Ice", "Flying", "Bug" } },
-                { "Ghost", new List<string> { "Psychic", "Ghost" } },
-                { "Dragon", new List<string> { "Dragon" } },
-                { "Dark", new List<string> { "Psychic", "Ghost" } },
-                { "Steel", new List<string> { "Ice", "Rock", "Fairy" } },
-                { "Fairy", new List<string> { "Fighting", "Dragon", "Dark" } }
-                };
-            }
-
-            public bool IsSuperEffective(string attackingType, string defendingTypes)
-            {
-                // Séparation des types du défenseur s'il y en a plusieurs
-                var types = defendingTypes.Split('/');
-
-                // Vérification pour chaque type de défense
-                foreach (var type in types)
-                {
-                    if (effectivenessChart.ContainsKey(attackingType) && effectivenessChart[attackingType].Contains(type))
-                    {
-                        return true; // Retourne vrai si l'attaque est super efficace contre au moins un des types
-                    }
-                }
-
-                return false; // Retourne faux si l'attaque n'est super efficace contre aucun des types
-            }
-        }
+        
     }
 
       
