@@ -11,8 +11,8 @@ namespace game
 {
     internal class DisplayPokeStat
     {
-        private List<Pokemon> team_poke = new List<Pokemon>();
-        private List<Capacite> abilities = new List<Capacite>();
+        public List<Pokemon> team_poke = new List<Pokemon>();
+        public List<Capacite> abilities = new List<Capacite>();
 
         public DisplayPokeStat()
         {

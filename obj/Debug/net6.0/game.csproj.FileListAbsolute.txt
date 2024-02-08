@@ -135,3 +135,4 @@ C:\Users\kaisd\Desktop\CSharp-Project01\obj\Debug\net6.0\refint\game.dll
 C:\Users\kaisd\Desktop\CSharp-Project01\obj\Debug\net6.0\game.pdb
 C:\Users\kaisd\Desktop\CSharp-Project01\obj\Debug\net6.0\game.genruntimeconfig.cache
 C:\Users\kaisd\Desktop\CSharp-Project01\obj\Debug\net6.0\ref\game.dll
+C:\Users\kaisd\Desktop\CSharp-Project01\bin\Debug\net6.0\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
