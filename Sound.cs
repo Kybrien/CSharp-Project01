@@ -32,14 +32,6 @@ namespace SoundLoader
             DisposeWave(); // Libère les ressources audio
         }
 
-        /*public static void SetVolume(float volume)
-        {
-            if (audioFileReader != null)
-            {
-                audioFileReader.Volume = volume; // Réglez le volume (entre 0.0 et 1.0)
-            }
-        }*/
-
         private static void DisposeWave()
         {
             if (waveOutDevice != null)

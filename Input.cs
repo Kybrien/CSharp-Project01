@@ -32,19 +32,15 @@ namespace InputLoader
                     Program.PlayGame();
                     break;
                 case '2':
-                    Input.ProcessDifficultyChoice();
-                    break;
-                case '3':
-                    Console.WriteLine("\nVous avez choisi l'option 3");
-                    break;
-                case '4':
                     Save.DeleteSave();
                     Menu.ShowLoadingScreen("Suppression de la partie.", 500);
                     Menu.ShowLoadingScreen("Suppression de la partie..", 500);
                     Menu.ShowLoadingScreen("Suppression de la partie...", 500);
                     break;
-                case '5':
-                    Console.WriteLine("\nAu revoir !");
+                case '3':
+                    Input.ProcessDifficultyChoice();
+                    break;
+                case '4':
                     Save.SaveGame();
                     Console.WriteLine("\nAu revoir !");
                     Program.quit = true;
