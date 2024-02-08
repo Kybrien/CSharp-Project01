@@ -1,0 +1,15 @@
+Tackle,40,Normal,Physique
+Growl,0,Normal,Statut
+Scratch,40,Normal,Physique
+Ember,40,Fire,Spéciale
+Water Gun,40,Water,Spéciale
+Thunder Shock,40,Electric,Spéciale
+Quick Attack,40,Normal,Physique
+Tail Whip,0,Normal,Statut
+Leer,0,Normal,Statut
+Bite,60,Dark,Physique
+Flamethrower,90,Fire,Spéciale
+Hydro Pump,110,Water,Spéciale
+Thunderbolt,90,Electric,Spéciale
+Ice Beam,90,Ice,Spéciale
+Psychic,90,Psychic,Spéciale
