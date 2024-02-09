@@ -19,11 +19,11 @@ namespace InputLoader
                     Menu.ShowLoadingScreen("Lancement de la partie..", 500);
                     Menu.ShowLoadingScreen("Lancement de la partie...", 500);
                     Console.Clear();
-                    /*if (!Save.IsIntroductionPlayed)
+                    if (!Save.IsIntroductionPlayed)
                     {
                         Story.Introduction();
                         Save.IsIntroductionPlayed = true; // Marquer l'introduction comme jouée
-                    }*/
+                    }
                     if (Program.currentMapIndex == 0)
                     {
                         Loading_Screen.Little_Woods();
@@ -207,15 +207,16 @@ namespace InputLoader
                     Map.AfficherCarte(carte);
                 }
 
-                else if (carte[newPosY, newPosX] == '█')
+                else if (carte[newPosY, newPosX] == '@')
                 {
+                    Combat.LancerCombatBoss(carte, newPosY, newPosX);
                 }
             }
         }
 
         private static bool IsValidMove(int y, int x, char[,] carte)
         {
-            return y >= 0 && y < carte.GetLength(0) && x >= 0 && x < carte.GetLength(1) && (carte[y, x] == ' ' || carte[y, x] == 'H' || carte[y, x] == '►' || carte[y, x] == '◄' || carte[y, x] == '┼' || carte[y, x] == '*' || carte[y, x] == '~');
+            return y >= 0 && y < carte.GetLength(0) && x >= 0 && x < carte.GetLength(1) && (carte[y, x] == ' ' || carte[y, x] == 'H' || carte[y, x] == '►' || carte[y, x] == '◄' || carte[y, x] == '┼' || carte[y, x] == '*' || carte[y, x] == '~' || carte[y, x] == '@');
         }
     }
 }

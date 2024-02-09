@@ -47,7 +47,6 @@ namespace StoryLoader
             Menu.ShowLoadingScreen("{===========================================}\nToi qui a décide de m'appeler\nNe te rends-tu pas compte de ce que tu viens de faire ?\nTu as libéré une force que tu ne peux pas contrôler\nTu as réveillé un pouvoir que tu ne peux pas comprendre\nEt pourtant tu te tiens devant moi...\nMoi, le grand Mewtwo t'invoque pour une confrontation qui decidera du destin de ta dimension\nSi je te juge digne, tu deviendras le nouveau Raziel, gardien des secrets de ce monde\nMais si echoues, ce sera la fin du monde tel que tu le connais\nMaintenant viens, jeune homme...", 500);
             Console.WriteLine("{===========================================}");
             Console.ReadKey();
-            /*Console.Clear();*/
             Program.currentMapIndex = 6;
             Program.NumberOfItem = 0;
             Program.posX = 18;

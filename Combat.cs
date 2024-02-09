@@ -59,7 +59,6 @@ namespace CombatLoader
                     Console.WriteLine("\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
                     TextDisplay.Sleeping($"\nVotre Pokémon actuel : {pokemonJoueur.Nom}\n",10);
                     TextDisplay.Sleeping($"{pokemonJoueur.Nom} - \nHP: {pokemonJoueur.PointsDeVie}\nType : {pokemonJoueur.Type}\nAttack: {pokemonJoueur.Attack}\nDefense: {pokemonJoueur.Defense}\nSpecial Attack: {pokemonJoueur.SpecialAttack}\nSpecial Defense: {pokemonJoueur.SpecialDefense}\nSpeed: {pokemonJoueur.Speed}",10);
-                    //On attend que l'utilisateur appuie sur une touche pour continuer
                     Console.ReadKey();
                     fight_end = true;
                     
@@ -71,7 +70,7 @@ namespace CombatLoader
                         {
                             Console.WriteLine($"Vous avez été vaincu par le {pokemonRencontre.Nom} sauvage !");
                             Console.WriteLine();
-                            Console.WriteLine("votre Pokémon est soignée");
+                            Console.WriteLine("Votre Pokémon est soigné");
                             pokemonJoueur.PointsDeVie = pvMaxJoueur;
                             Thread.Sleep(500);
                             gameover = true;
@@ -99,7 +98,7 @@ namespace CombatLoader
                         Console.WriteLine("╠══════════════════════════════════╣");
                         Console.WriteLine("║1.Utiliser une Capacité           ║");
                         Console.WriteLine("║2.Fuir le Combat                  ║");
-                        Console.WriteLine("║3.Attraper un Pokéball            ║");
+                        Console.WriteLine("║3.Lancer une Pokéball             ║");
                         Console.WriteLine("║4.Changer de Pokémon              ║");
                         Console.WriteLine("╚══════════════════════════════════╝");
                         int choice = DemanderChoixJoueur();
@@ -137,7 +136,7 @@ namespace CombatLoader
                                 fight_end = false;
                                 break;
                             case 3:
-                                Console.WriteLine("Pokeball lancé !");
+                                Console.WriteLine("Pokeball lancée !");
                                 Random catchPokemon = new Random();
                                 Thread.Sleep(500);
 
@@ -154,7 +153,7 @@ namespace CombatLoader
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Le pokémon s'est échapée");
+                                    Console.WriteLine("Le pokémon s'est échapé");
                                     Console.WriteLine();
 
                                     Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
@@ -215,6 +214,8 @@ namespace CombatLoader
 
         public static void LancerCombatBoss(char[,] carte, int playerPosX, int playerPosY)
         {
+            Sound.ChangeMusicBasedOnMap(11);
+            Animation.Mewtwo();
             Random random = new Random();
             Pokemon pokemonJoueur = StartPoke;
 
@@ -241,7 +242,7 @@ namespace CombatLoader
                         {
                             Console.WriteLine($"Vous avez été vaincu par le {pokemonRencontre.Nom} sauvage !");
                             Console.WriteLine();
-                            Console.WriteLine("votre Pokémon est soignée");
+                            Console.WriteLine("Votre Pokémon est soigné");
                             pokemonJoueur.PointsDeVie = pvMaxJoueur;
                             Thread.Sleep(500);
                             gameover = true;
@@ -269,7 +270,7 @@ namespace CombatLoader
                         Console.WriteLine("╠══════════════════════════════════╣");
                         Console.WriteLine("║1.Utiliser une Capacité           ║");
                         Console.WriteLine("║2.Fuir le Combat                  ║");
-                        Console.WriteLine("║3.Attraper un Pokéball            ║");
+                        Console.WriteLine("║3.Lancer une Pokéball             ║");
                         Console.WriteLine("║4.Changer de Pokémon              ║");
                         Console.WriteLine("╚══════════════════════════════════╝");
                         int choice = DemanderChoixJoueur();
@@ -307,7 +308,7 @@ namespace CombatLoader
                                 fight_end = false;
                                 break;
                             case 3:
-                                Console.WriteLine("Pokeball lancé !");
+                                Console.WriteLine("Pokeball lancée !");
                                 Random catchPokemon = new Random();
                                 Thread.Sleep(500);
 
@@ -324,7 +325,7 @@ namespace CombatLoader
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Le pokémon s'est échapée");
+                                    Console.WriteLine("Le pokémon s'est échapé");
                                     Console.WriteLine();
 
                                     Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
