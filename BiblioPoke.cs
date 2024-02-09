@@ -6,11 +6,11 @@
         {
             List<Pokemon> listePokemon = new List<Pokemon>();
 
-            listePokemon.Add(new Pokemon("Venusaur", "Grass/Poison", 80, 82, 83, 100, 100, 80, new List<Capacite> {new Capacite("Solar Beam", "Grass", 120, 100, "Special"),new Capacite("Sludge Bomb", "Poison", 90, 100, "Special"),new Capacite("Sleep Powder", "Grass", 0, 75, "Status"),new Capacite("Earthquake", "Ground", 100, 100, "Physical")}));
+            listePokemon.Add(new Pokemon("Venusaur", "Grass/Poison", 130, 82, 83, 100, 100, 80, new List<Capacite> {new Capacite("Solar Beam", "Grass", 120, 100, "Special"),new Capacite("Sludge Bomb", "Poison", 90, 100, "Special"),new Capacite("Sleep Powder", "Grass", 0, 75, "Status"),new Capacite("Earthquake", "Ground", 100, 100, "Physical")}));
 
-            listePokemon.Add(new Pokemon("Blastoise", "Water", 79, 83, 100, 85, 105, 78, new List<Capacite> {new Capacite("Hydro Pump", "Water", 110, 80, "Special"),new Capacite("Ice Beam", "Ice", 90, 100, "Special"),new Capacite("Flash Cannon", "Steel", 80, 100, "Special"),new Capacite("Protect", "Normal", 0, 100, "Status")}));
+            listePokemon.Add(new Pokemon("Blastoise", "Water", 120, 83, 100, 85, 105, 78, new List<Capacite> {new Capacite("Hydro Pump", "Water", 110, 80, "Special"),new Capacite("Ice Beam", "Ice", 90, 100, "Special"),new Capacite("Flash Cannon", "Steel", 80, 100, "Special"),new Capacite("Protect", "Normal", 0, 100, "Status")}));
 
-            listePokemon.Add(new Pokemon("Charizard", "Fire/Flying", 78, 84, 78, 109, 85, 100, new List<Capacite> {new Capacite("Flamethrower", "Fire", 90, 100, "Special"),new Capacite("Fly", "Flying", 90, 95, "Physical"),new Capacite("Dragon Claw", "Dragon", 80, 100, "Physical"),new Capacite("Solar Beam", "Grass", 120, 100, "Special")}));
+            listePokemon.Add(new Pokemon("Charizard", "Fire/Flying", 110, 84, 78, 109, 85, 100, new List<Capacite> {new Capacite("Flamethrower", "Fire", 90, 100, "Special"),new Capacite("Fly", "Flying", 90, 95, "Physical"),new Capacite("Dragon Claw", "Dragon", 80, 100, "Physical"),new Capacite("Solar Beam", "Grass", 120, 100, "Special")}));
 
 
 

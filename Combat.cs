@@ -100,7 +100,7 @@ namespace CombatLoader
                         Console.WriteLine("║1.Utiliser une Capacité           ║");
                         Console.WriteLine("║2.Fuir le Combat                  ║");
                         Console.WriteLine("║3.Attraper un Pokéball            ║");
-                        Console.WriteLine("║4.Changer de Pokémon              ║");
+                        Console.WriteLine("║4.Utiliser une potion             ║");
                         Console.WriteLine("╚══════════════════════════════════╝");
                         int choice = DemanderChoixJoueur();
                         switch (choice)
@@ -162,7 +162,11 @@ namespace CombatLoader
                                 }
                                 break;
                             case 4:
+                                pokemonJoueur.PointsDeVie = pvMaxJoueur;
+                                Console.WriteLine("Tous vos hp sont régénérer !");
                                 Console.WriteLine();
+                                Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
+                                iaEasy(pokemonRencontre, pokemonJoueur);
                                 break;
                         }
                             
@@ -221,7 +225,7 @@ namespace CombatLoader
 
                     // ---------------------------------Rencontre Boss---------------------------------
                     // Sélectionner un Pokémon au hasard depuis la bibliothèque
-                    Pokemon pokemonRencontre = listePokemon[random.Next(listePokemon.Count)];
+                    Pokemon pokemonRencontre = listeBoss[random.Next(listeBoss.Count)];
                     int pvMaxRencontre = pokemonRencontre.PointsDeVie;
                     int pvMaxJoueur = pokemonJoueur.PointsDeVie;
 
