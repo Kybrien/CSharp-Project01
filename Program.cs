@@ -60,7 +60,7 @@ class Program
             keyInfo = Console.ReadKey(true);
             Input.MovePlayer(keyInfo, currentMap);
             Console.Clear();
-            if (NumberOfItem == 1)
+            if (NumberOfItem == 10)
             {
                 Story.EndGame();
             }

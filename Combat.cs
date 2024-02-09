@@ -138,7 +138,7 @@ namespace CombatLoader
                                     Console.WriteLine($"{pokemonRencontre.Nom} - \nHP: {pokemonRencontre.PointsDeVie}\nType : {pokemonRencontre.Type}\nAttack: {pokemonRencontre.Attack}\nDefense: {pokemonRencontre.Defense}\nSpecial Attack: {pokemonRencontre.SpecialAttack}\nSpecial Defense: {pokemonRencontre.SpecialDefense}\nSpeed: {pokemonRencontre.Speed}");
                                     Thread.Sleep(3000);
                                     fight_end=false; 
-                                    break;
+                                   
 
                                 }
                                 else
