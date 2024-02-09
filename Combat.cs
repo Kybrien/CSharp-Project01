@@ -26,8 +26,8 @@ namespace CombatLoader
             Random random = new Random();
             Pokemon pokemonJoueur = StartPoke;
 
-                       
 
+            
             // Vérifier si le joueur est sur une case avec un Pokémon (case 'H')
             if (carte[playerPosY, playerPosX] == 'H')
 
@@ -67,6 +67,7 @@ namespace CombatLoader
 
                             fight_end = false;
                             break;
+                           
                         }
                         if (pokemonRencontre.PointsDeVie <= 0)
                         {
@@ -79,6 +80,7 @@ namespace CombatLoader
                             fight_end = false;
 
                             break;
+                            
                         }
                         Console.Clear();
                         Console.WriteLine("Choisi une option :");
@@ -156,8 +158,8 @@ namespace CombatLoader
                         
                     }
 
-                    // Réinitialiser la case de la carte à '.' seulement si le Pokémon n'a pas été vaincu
-                    carte[playerPosY, playerPosX] = ' ';  
+                    // Réinitialiser la case de la carte à 'H' 
+                    carte[playerPosY, playerPosX] = 'H';  
                 }
             }
         }
