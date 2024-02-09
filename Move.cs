@@ -23,9 +23,11 @@ namespace MoveControl
                     Console.WriteLine($"{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
-                        //if (TypeEffectiveness.IsSuperEffective(attackAbility.Type, defender.Type))
+                        
+                        if (Effective.IsSuperEffectiveSwitch(attackAbility.Type, defender.Type))
                         {
-
+                            damage *= 2;
+                            Console.WriteLine("L'attaque est super efficace !");
                         }
                         Console.WriteLine($"{defender.Nom} a subi {damage} dommages.");
 
@@ -42,6 +44,11 @@ namespace MoveControl
                     Console.WriteLine($"{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
+                        if (Effective.IsSuperEffectiveSwitch(attackAbility.Type, defender.Type))
+                        {
+                            spe_damage *= 2;
+                            Console.WriteLine("L'attaque est super efficace !");
+                        }
                         Console.WriteLine($"{defender.Nom} a subi {spe_damage} dommages.");
                         defender.TakeDamage(spe_damage);
                     }
@@ -96,6 +103,11 @@ namespace MoveControl
                     Console.WriteLine($"{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
+                        if (Effective.IsSuperEffectiveSwitch(attackAbility.Type, defender.Type))
+                        {
+                            damage *= 2;
+                            Console.WriteLine("L'attaque est super efficace !");
+                        }
                         Console.WriteLine($"{defender.Nom} a subi {damage} dommages.");
                         defender.TakeDamage(damage);
                     }
@@ -109,6 +121,11 @@ namespace MoveControl
                     Console.WriteLine($"{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
+                        if (Effective.IsSuperEffectiveSwitch(attackAbility.Type, defender.Type))
+                        {
+                            spe_damage *= 2;
+                            Console.WriteLine("L'attaque est super efficace !");
+                        }
                         Console.WriteLine($"{defender.Nom} a subi {spe_damage} dommages.");
                         defender.TakeDamage(spe_damage);
                     }
