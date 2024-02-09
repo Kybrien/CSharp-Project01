@@ -1,4 +1,6 @@
-﻿namespace Anim
+﻿using Display;
+
+namespace Anim
 {
     public class Animation
     {
@@ -77,6 +79,27 @@
                 Thread.Sleep(200); // Delay between frames
             }
 
+        }
+
+        public static void Mewtwo()
+        {
+            Console.Clear();
+            Console.WriteLine("           #  #");
+            Console.WriteLine("          <#####>");
+            Console.WriteLine("        .  #o#o#");
+            Console.WriteLine("      <:##:.####'");
+            Console.WriteLine(".:#:. ⠈   '⠻###:.");
+            Console.WriteLine("#  :#:      '##⡄ ^:.");
+            Console.WriteLine("#;  ⠘#..   .####:.'#.");
+            Console.WriteLine("^#;  :##:.:######: ;#;");
+            Console.WriteLine(" ⠈##. ⠘##########'");
+            Console.WriteLine("   :##⡄⠀:#######'");
+            Console.WriteLine("     ^⠀⠀.#⠃    :#");
+            Console.WriteLine("       .#:     :##:..");
+            Console.WriteLine("      .###      ⠈^^");
+            Console.WriteLine("       ^");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
