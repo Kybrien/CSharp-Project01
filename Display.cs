@@ -350,8 +350,9 @@ namespace Display
             Console.WriteLine("╠════════════════════════╣");
             Console.WriteLine("║ 1.  Lancer             ║");
             Console.WriteLine("║ 2.  Supprimer Partie   ║");
-            Console.WriteLine("║ 2.  Difficulte         ║");
-            Console.WriteLine("║ 3.  Quitter            ║");
+            Console.WriteLine("║ 3.  Difficulte         ║");
+            Console.WriteLine("║ 4.  Equipe             ║");
+            Console.WriteLine("║ 5.  Quitter            ║");
             Console.WriteLine("╚════════════════════════╝");
         }
 
