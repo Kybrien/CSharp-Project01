@@ -4,6 +4,7 @@ using game;
 using LoadingScreen;
 using SaveEditor;
 using SoundLoader;
+using StoryLoader; 
 
 namespace InputLoader
 {

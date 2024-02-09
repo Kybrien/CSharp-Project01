@@ -66,31 +66,9 @@ namespace CombatLoader
                     // Combat
                     while (fight_end)
                     {
-                        if (pokemonJoueur.PointsDeVie <= 0)
-                        {
-                            Console.WriteLine($"Vous avez été vaincu par le {pokemonRencontre.Nom} sauvage !");
-                            Console.WriteLine();
-                            Console.WriteLine("Votre Pokémon est soigné");
-                            pokemonJoueur.PointsDeVie = pvMaxJoueur;
-                            Thread.Sleep(500);
-                            gameover = true;
-
-                            fight_end = false;
-                            break;
-                           
-                        }
-                        if (pokemonRencontre.PointsDeVie <= 0)
-                        {
-                            Console.WriteLine($"Vous avez vaincu le {pokemonRencontre.Nom} sauvage !\n");
-                            Console.WriteLine("Votre Pokémon est soigné\n");
-                            pokemonJoueur.PointsDeVie = pvMaxJoueur;
-                            Console.ReadKey();
-
-                            fight_end = false;
-
-                            break;
-                            
-                        }
+                        
+                          
+                        
                         Console.Clear();
                         Console.WriteLine("Choisi une option :");
                         Console.WriteLine("╔══════════════════════════════════╗");
@@ -124,10 +102,21 @@ namespace CombatLoader
                                 AfficherCapacitesJoueur(pokemonJoueur);
                                 int choixCapacite = DemanderChoixCapacite(pokemonJoueur.Capacites.Count);
                                 Move.ManageMoveJ(pokemonJoueur, pokemonRencontre, pokemonJoueur.Capacites[choixCapacite - 1]);
+                                if (pokemonRencontre.PointsDeVie <= 0)
+                                {
+                                    Console.WriteLine($"Vous avez vaincu le {pokemonRencontre.Nom} sauvage !\n");
+                                    Console.WriteLine("Votre Pokémon est soigné\n");
+                                    pokemonJoueur.PointsDeVie = pvMaxJoueur;
+                                    Console.ReadKey();
+
+                                    fight_end = false;
+
+                                    break;
+                                }
 
 
-                                // Tour du Pokémon sauvage
-                                Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
+                                    // Tour du Pokémon sauvage
+                                    Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
                                 iaEasy(pokemonRencontre, pokemonJoueur);
                                 break;
                             case 2: 
@@ -158,6 +147,19 @@ namespace CombatLoader
 
                                     Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
                                     iaEasy(pokemonRencontre, pokemonJoueur);
+                                    if (pokemonJoueur.PointsDeVie <= 0)
+                                    {
+                                        Console.WriteLine($"Vous avez été vaincu par le {pokemonRencontre.Nom} sauvage !");
+                                        Console.WriteLine();
+                                        Console.WriteLine("Votre Pokémon est soigné");
+                                        pokemonJoueur.PointsDeVie = pvMaxJoueur;
+                                        Thread.Sleep(500);
+                                        gameover = true;
+
+                                        fight_end = false;
+                                        break;
+
+                                    }
                                 }
                                 break;
                             case 4:
@@ -242,19 +244,7 @@ namespace CombatLoader
                     // Combat
                     while (fight_end)
                     {
-                        if (pokemonJoueur.PointsDeVie <= 0)
-                        {
-                            Console.WriteLine($"Vous avez été vaincu par le {pokemonRencontre.Nom} sauvage !");
-                            Console.WriteLine();
-                            Console.WriteLine("Votre Pokémon est soigné");
-                            pokemonJoueur.PointsDeVie = pvMaxJoueur;
-                            Thread.Sleep(500);
-                            gameover = true;
 
-                            fight_end = false;
-                            break;
-
-                        }
                         if (pokemonRencontre.PointsDeVie <= 0)
                         {
                             Console.WriteLine($"Vous avez vaincu le {pokemonRencontre.Nom} sauvage !\n");
@@ -372,6 +362,7 @@ namespace CombatLoader
 
                 // Appliquer les dégâts au joueur
                 Move.ManageMoveE(pokemon_attacker, pokemon_defender, pokemon_attacker.Capacites[choixCapacite - 1]);
+
                 
             }
         }
