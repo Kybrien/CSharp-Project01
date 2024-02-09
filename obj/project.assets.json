@@ -530,24 +530,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kaisd\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kaisd\\Desktop\\CSharp-Project01\\game.csproj",
+      "projectUniqueName": "C:\\Users\\admin\\OneDrive\\Bureau\\GC\\C# G\\CSharp-Project01\\game.csproj",
       "projectName": "game",
-      "projectPath": "C:\\Users\\kaisd\\Desktop\\CSharp-Project01\\game.csproj",
-      "packagesPath": "C:\\Users\\kaisd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kaisd\\Desktop\\CSharp-Project01\\obj\\",
+      "projectPath": "C:\\Users\\admin\\OneDrive\\Bureau\\GC\\C# G\\CSharp-Project01\\game.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\admin\\OneDrive\\Bureau\\GC\\C# G\\CSharp-Project01\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\kaisd\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -602,7 +597,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   },
