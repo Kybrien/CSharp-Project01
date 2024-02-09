@@ -163,7 +163,6 @@ namespace InputLoader
                         isSurfing = false;
                     }
                     Combat.LancerCombatSiRencontrePokemon(carte, newPosX, newPosY);
-                    // Vous pouvez ajouter ici tout code supplémentaire nécessaire lorsque le joueur se déplace sur une case 'H'
                 }
                 else if (carte[newPosY, newPosX] == '┼')
                 {
@@ -201,6 +200,10 @@ namespace InputLoader
                 {
                     carte = Map.ChangeMap(carte);
                     Map.AfficherCarte(carte);
+                }
+
+                else if (carte[newPosY, newPosX] == '█')
+                {
                 }
             }
         }

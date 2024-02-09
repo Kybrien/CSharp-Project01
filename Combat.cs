@@ -167,7 +167,7 @@ namespace CombatLoader
                         
                         Story.GameOver();
                     }
-                    Sound.AutoOST()
+                    Sound.AutoOST();
                 }
             }
         } 

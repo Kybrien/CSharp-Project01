@@ -102,6 +102,7 @@ namespace SaveEditor
 
                 // Réinitialiser la carte
                 Program.currentMap = Map.InitMap1();
+                Program.currentMapIndex = 0;
 
                 Console.WriteLine("Sauvegarde supprimée et jeu réinitialisé.");
             }

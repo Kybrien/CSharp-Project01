@@ -2,6 +2,7 @@
 using Display;
 using InputLoader;
 using SaveEditor;
+using StoryLoader;
 using SoundLoader;
 
 class Program
@@ -59,6 +60,10 @@ class Program
             keyInfo = Console.ReadKey(true);
             Input.MovePlayer(keyInfo, currentMap);
             Console.Clear();
+            if (NumberOfItem == 1)
+            {
+                Story.EndGame();
+            }
             Map.AfficherCarte(currentMap);
 
             // Vérifier si le joueur a rencontré un Pokémon
@@ -79,6 +84,7 @@ class Program
         ConsoleKeyInfo keyInfo = Console.ReadKey(true);
         if (keyInfo.Key == ConsoleKey.E)
         {
+            NumberOfItem++;
             Console.WriteLine("\nVous avez ramassé l'objet.");
             carte[posY, posX] = '*';
         }
