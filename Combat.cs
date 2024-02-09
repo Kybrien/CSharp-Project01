@@ -13,12 +13,12 @@ namespace CombatLoader
         public static Random random2 = new Random();
         public static List<Pokemon> listePokemon = BibliothequePokemon.GetListePokemon();
         public static Pokemon StartPoke = listePokemon[random2.Next(listePokemon.Count)];
+        private static bool gameover = false;
 
         public static void LancerCombatSiRencontrePokemon(char[,] carte, int playerPosX, int playerPosY)
         {
             Random random = new Random();
             Pokemon pokemonJoueur = StartPoke;
-        private static bool gameover = false;
 
         
             // Vérifier si le joueur est sur une case avec un Pokémon (case 'H')
@@ -150,6 +150,9 @@ namespace CombatLoader
                                     iaEasy(pokemonRencontre, pokemonJoueur);
                                 }
                                 break;
+                            case 4:
+                                Console.WriteLine();
+                                break;
                         }
                             
 
@@ -161,8 +164,10 @@ namespace CombatLoader
                     carte[playerPosY, playerPosX] = 'H';
                     if (gameover)
                     {
+                        
                         Story.GameOver();
                     }
+                    Sound.AutoOST()
                 }
             }
         } 
@@ -192,7 +197,7 @@ namespace CombatLoader
             do
             {
                 Console.Write("Votre choix : ");
-            } while (!int.TryParse(Console.ReadLine(), out choix) || choix < 1 || choix > 3);
+            } while (!int.TryParse(Console.ReadLine(), out choix) || choix < 1 || choix > 4);
 
             return choix;
         }

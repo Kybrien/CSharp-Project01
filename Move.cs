@@ -1,5 +1,5 @@
 ﻿using Biblio;
-
+using Effectiveness;
 namespace MoveControl
 {
     public class Move
@@ -8,12 +8,14 @@ namespace MoveControl
         {
             Random rand = new Random();
             int randomChance = rand.Next(100);
+            Random roll = new Random();
+            int damageRoll = roll.Next(5,30);
             string cat = attackAbility.Category;
             Console.WriteLine($"Capacités : {attackAbility.Nom}");
             switch (cat)
             {
                 case "Physical":
-                    int damage = (attackAbility.Puissance + attacker.Attack) * 5 / defender.Defense + 10;
+                    int damage = (attackAbility.Puissance + attacker.Attack) * 5 / defender.Defense + damageRoll;
                     Console.WriteLine($"\n------------\n{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
@@ -23,7 +25,13 @@ namespace MoveControl
                             damage *= 2;
                             Console.WriteLine("L'attaque est super efficace !");
                         }
-                        Console.WriteLine($"{defender.Nom} a subi {damage} dommages.\n------------");
+                        if (Effective.IsNotVeryEffectiveSwitch(attackAbility.Type, defender.Type))
+                        {
+                            damage /= 2;
+                            Console.WriteLine("L'attaque n'est pas très efficace !");
+                        }
+                        Console.WriteLine($"{defender.Nom} a subi {damage} dommages.");
+
                         defender.TakeDamage(damage);
                     }
                     else
@@ -32,7 +40,7 @@ namespace MoveControl
                     }
                     break;
                 case "Special":
-                    int spe_damage = (attackAbility.Puissance + attacker.SpecialAttack) * 5 / defender.SpecialDefense + 10;
+                    int spe_damage = (attackAbility.Puissance + attacker.SpecialAttack) * 5 / defender.SpecialDefense + damageRoll;
                     Console.WriteLine($"\n------------\n{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
@@ -40,6 +48,11 @@ namespace MoveControl
                         {
                             spe_damage *= 2;
                             Console.WriteLine("L'attaque est super efficace !");
+                        }
+                        if (Effective.IsNotVeryEffectiveSwitch(attackAbility.Type, defender.Type))
+                        {
+                            spe_damage /= 2;
+                            Console.WriteLine("L'attaque n'est pas très efficace !");
                         }
                         Console.WriteLine($"{defender.Nom} a subi {spe_damage} dommages.\n------------");
                         defender.TakeDamage(spe_damage);
@@ -85,12 +98,14 @@ namespace MoveControl
         {
             Random rand = new Random();
             int randomChance = rand.Next(100);
+            Random roll = new Random();
+            int damageRoll = roll.Next(5,30);
             string cat = attackAbility.Category;
             Console.WriteLine($"Capacités : {attackAbility.Nom}");
             switch (cat)
             {
                 case "Physical":
-                    int damage = (attackAbility.Puissance + attacker.Attack) * 5 / defender.Defense + 10;
+                    int damage = (attackAbility.Puissance + attacker.Attack) * 5 / defender.Defense + damageRoll;
                     Console.WriteLine($"\n------------\n{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
@@ -98,6 +113,11 @@ namespace MoveControl
                         {
                             damage *= 2;
                             Console.WriteLine("L'attaque est super efficace !");
+                        }
+                        if (Effective.IsNotVeryEffectiveSwitch(attackAbility.Type, defender.Type))
+                        {
+                            damage /= 2;
+                            Console.WriteLine("L'attaque n'est pas très efficace !");
                         }
                         Console.WriteLine($"{defender.Nom} a subi {damage} dommages.\n------------");
                         defender.TakeDamage(damage);
@@ -108,7 +128,7 @@ namespace MoveControl
                     }
                     break;
                 case "Special":
-                    int spe_damage = (attackAbility.Puissance + attacker.SpecialAttack) * 5 / defender.SpecialDefense + 10;
+                    int spe_damage = (attackAbility.Puissance + attacker.SpecialAttack) * 5 / defender.SpecialDefense + damageRoll;
                     Console.WriteLine($"{attacker.Nom} attaque !");
                     if (randomChance <= attackAbility.Precision)
                     {
@@ -116,6 +136,11 @@ namespace MoveControl
                         {
                             spe_damage *= 2;
                             Console.WriteLine("L'attaque est super efficace !");
+                        }
+                        if (Effective.IsNotVeryEffectiveSwitch(attackAbility.Type, defender.Type))
+                        {
+                            spe_damage /= 2;
+                            Console.WriteLine("L'attaque n'est pas très efficace !");
                         }
                         Console.WriteLine($"{defender.Nom} a subi {spe_damage} dommages.\n------------");
                         defender.TakeDamage(spe_damage);
