@@ -1,4 +1,5 @@
 ﻿using System;
+using Display;
 using NAudio.Wave;
 
 namespace SoundLoader
@@ -62,7 +63,7 @@ namespace SoundLoader
                 case 5:
                     return "OST_56.wav";
                 case 6:
-                    return "Introduction.wav";
+                    return "OST_End.wav";
                 case 7:
                     return "Earthquake.wav";
                 case 8:
@@ -74,11 +75,38 @@ namespace SoundLoader
                 case 11:
                     return "Combat_Boss.wav";
                 case 12:
-                    return "OST_End.wav";
+                    return "Introduction.wav";
                 case 13:
                     return "GameOver.wav";
+                case 14:
+                    return "EndTalk.wav";
                 default:
                     return "";
+            }
+        }
+
+        public static void AutoOST()
+        {
+            switch (Program.currentMapIndex)
+            {
+                case 0:
+                    SoundLoader.Sound.ChangeMusicBasedOnMap(1);
+                    break;
+                case 1:
+                    SoundLoader.Sound.ChangeMusicBasedOnMap(1);
+                    break;
+                case 2:
+                    SoundLoader.Sound.ChangeMusicBasedOnMap(3);
+                    break;
+                case 3:
+                    SoundLoader.Sound.ChangeMusicBasedOnMap(3);
+                    break;
+                case 4:
+                    SoundLoader.Sound.ChangeMusicBasedOnMap(5);
+                    break;
+                case 5:
+                    SoundLoader.Sound.ChangeMusicBasedOnMap(5);
+                    break;
             }
         }
     }

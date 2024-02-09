@@ -57,7 +57,7 @@ namespace CombatLoader
                     // Combat
                     while (fight_end)
                     {
-                        if (pokemonRencontre.PointsDeVie < 0)
+                        if (pokemonRencontre.PointsDeVie <= 0)
                         {
                             Console.WriteLine($"Vous avez vaincu le {pokemonRencontre.Nom} sauvage !\n");
                             Console.WriteLine("Votre Pokémon est soigné\n");
@@ -68,7 +68,7 @@ namespace CombatLoader
 
                             break;
                         }
-                        if (pokemonJoueur.PointsDeVie < 0)
+                        if (pokemonJoueur.PointsDeVie <= 0)
                         {
                             Console.WriteLine($"Vous avez été vaincu par le {pokemonRencontre.Nom} sauvage !\n");
                             Console.WriteLine("Votre Pokémon est soigné");
@@ -104,6 +104,7 @@ namespace CombatLoader
                     {
                         Story.GameOver();
                     }
+                    Sound.AutoOST();
                 }
             }
         } 
