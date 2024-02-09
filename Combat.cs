@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using Display;
-using Effectiveness;
-using static CombatLoader.Combat;
+﻿using Display;
+using StoryLoader;
 using Biblio;
 using MoveControl;
 using Anim;
 using Team;
+using SoundLoader;
 namespace CombatLoader
 {
     public class Combat
@@ -20,7 +13,8 @@ namespace CombatLoader
         public static Random random2 = new Random();
         public static List<Pokemon> listePokemon = BibliothequePokemon.GetListePokemon();
         public static Pokemon StartPoke = listePokemon[random2.Next(listePokemon.Count)];
-        
+        private static bool gameover = false;
+
         public static void LancerCombatSiRencontrePokemon(char[,] carte, int playerPosX, int playerPosY)
         {
             Random random = new Random();
@@ -35,24 +29,32 @@ namespace CombatLoader
                 // Vérifier aléatoirement s'il y a une rencontre avec un Pokémon
                 if (random.Next(1, 10) == 1)
                 {
-                    // Rencontre un Pokémon
+                    if (Program.currentMapIndex == 0 || Program.currentMapIndex == 1)
+                    {
+                        Sound.ChangeMusicBasedOnMap(8);
+                    }
+                    if (Program.currentMapIndex == 2 || Program.currentMapIndex == 3)
+                    {
+                        Sound.ChangeMusicBasedOnMap(9);
+                    }
+                    if (Program.currentMapIndex == 4 || Program.currentMapIndex == 5)
+                    {
+                        Sound.ChangeMusicBasedOnMap(10);
+                    }
+                    // ---------------------------------Rencontre un Pokémon---------------------------------
                     // Sélectionner un Pokémon au hasard depuis la bibliothèque
                     Pokemon pokemonRencontre = listePokemon[random.Next(listePokemon.Count)];
                     int pvMaxRencontre = pokemonRencontre.PointsDeVie;
                     int pvMaxJoueur = pokemonJoueur.PointsDeVie;
 
                     Animation.Fight_Anim();
-                    Console.WriteLine();
-
-                    Console.WriteLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
-
-                    Console.WriteLine($"Votre Pokémon actuelle : {pokemonJoueur.Nom}");
-                    Console.WriteLine();
-
-                    Console.WriteLine($"{pokemonJoueur.Nom} - \nHP: {pokemonJoueur.PointsDeVie}\nType : {pokemonJoueur.Type}\nAttack: {pokemonJoueur.Attack}\nDefense: {pokemonJoueur.Defense}\nSpecial Attack: {pokemonJoueur.SpecialAttack}\nSpecial Defense: {pokemonJoueur.SpecialDefense}\nSpeed: {pokemonJoueur.Speed}");
+                    Console.WriteLine("\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
+                    TextDisplay.Sleeping($"\nVotre Pokémon actuel : {pokemonJoueur.Nom}\n",10);
+                    TextDisplay.Sleeping($"{pokemonJoueur.Nom} - \nHP: {pokemonJoueur.PointsDeVie}\nType : {pokemonJoueur.Type}\nAttack: {pokemonJoueur.Attack}\nDefense: {pokemonJoueur.Defense}\nSpecial Attack: {pokemonJoueur.SpecialAttack}\nSpecial Defense: {pokemonJoueur.SpecialDefense}\nSpeed: {pokemonJoueur.Speed}",10);
+                    //On attend que l'utilisateur appuie sur une touche pour continuer
+                    Console.ReadKey();
                     fight_end = true;
                     
-                    Thread.Sleep(2000);
                     Console.Clear();
                     // Combat
                     while (fight_end)
@@ -64,6 +66,7 @@ namespace CombatLoader
                             Console.WriteLine("votre Pokémon est soignée");
                             pokemonJoueur.PointsDeVie = pvMaxJoueur;
                             Thread.Sleep(500);
+                            gameover = true;
 
                             fight_end = false;
                             break;
@@ -71,11 +74,10 @@ namespace CombatLoader
                         }
                         if (pokemonRencontre.PointsDeVie <= 0)
                         {
-                            Console.WriteLine($"Vous avez vaincu le {pokemonRencontre.Nom} sauvage !");
-                            Console.WriteLine() ;
-                            Console.WriteLine("votre Pokémon est soignée");
+                            Console.WriteLine($"Vous avez vaincu le {pokemonRencontre.Nom} sauvage !\n");
+                            Console.WriteLine("Votre Pokémon est soigné\n");
                             pokemonJoueur.PointsDeVie = pvMaxJoueur;
-                            Thread.Sleep(500);
+                            Console.ReadKey();
 
                             fight_end = false;
 
@@ -139,7 +141,7 @@ namespace CombatLoader
                                     Console.WriteLine($"{pokemonRencontre.Nom} - \nHP: {pokemonRencontre.PointsDeVie}\nType : {pokemonRencontre.Type}\nAttack: {pokemonRencontre.Attack}\nDefense: {pokemonRencontre.Defense}\nSpecial Attack: {pokemonRencontre.SpecialAttack}\nSpecial Defense: {pokemonRencontre.SpecialDefense}\nSpeed: {pokemonRencontre.Speed}");
                                     Thread.Sleep(3000);
                                     fight_end=false; 
-                                    break;
+                                   
 
                                 }
                                 else
@@ -151,6 +153,9 @@ namespace CombatLoader
                                     iaEasy(pokemonRencontre, pokemonJoueur);
                                 }
                                 break;
+                            case 4:
+                                Console.WriteLine();
+                                break;
                         }
                             
 
@@ -158,13 +163,17 @@ namespace CombatLoader
                         
                     }
 
-                    // Réinitialiser la case de la carte à 'H' 
-                    carte[playerPosY, playerPosX] = 'H';  
+                    // Réinitialiser la case de la carte à 'H' seulement si le Pokémon n'a pas été vaincu
+                    carte[playerPosY, playerPosX] = 'H';
+                    if (gameover)
+                    {
+                        
+                        Story.GameOver();
+                    }
+                    Sound.AutoOST();
                 }
             }
-        }
-
-        
+        } 
 
         public static void AfficherCapacitesJoueur(Pokemon pokemon)
         {
@@ -191,7 +200,7 @@ namespace CombatLoader
             do
             {
                 Console.Write("Votre choix : ");
-            } while (!int.TryParse(Console.ReadLine(), out choix) || choix < 1 || choix > 3);
+            } while (!int.TryParse(Console.ReadLine(), out choix) || choix < 1 || choix > 4);
 
             return choix;
         }
@@ -214,16 +223,7 @@ namespace CombatLoader
                 Move.ManageMoveE(pokemon_attacker, pokemon_defender, pokemon_attacker.Capacites[choixCapacite - 1]);
                 
             }
-
-
-
-
         }
-        
-
-        
-
     }
-
-      
+     
 }
