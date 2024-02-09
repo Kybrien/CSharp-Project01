@@ -161,3 +161,4 @@ C:\Users\admin\OneDrive\Bureau\GC\C# G\CSharp-Project01\obj\Debug\net6.0\refint\
 C:\Users\admin\OneDrive\Bureau\GC\C# G\CSharp-Project01\obj\Debug\net6.0\game.pdb
 C:\Users\admin\OneDrive\Bureau\GC\C# G\CSharp-Project01\obj\Debug\net6.0\game.genruntimeconfig.cache
 C:\Users\admin\OneDrive\Bureau\GC\C# G\CSharp-Project01\obj\Debug\net6.0\ref\game.dll
+C:\Users\royhu\Documents\GitHub\CSharp-Project01\bin\Debug\net6.0\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
