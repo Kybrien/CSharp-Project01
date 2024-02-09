@@ -3,8 +3,6 @@ using Display;
 using InputLoader;
 using SaveEditor;
 using SoundLoader;
-using System;
-using System.Collections.Generic;
 
 class Program
 {
@@ -15,9 +13,10 @@ class Program
     public static int currentMapIndex = 0;
     public static int NumberOfItem = 0;
 
-    static void Main()
+    public static void Main()
     {
         InitializeConsole();
+        Console.Clear();
 
         // Initialiser la carte actuelle
         currentMap = Map.InitMap1();

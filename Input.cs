@@ -3,7 +3,6 @@ using Display;
 using LoadingScreen;
 using SaveEditor;
 using SoundLoader;
-using StoryLoader;
 
 namespace InputLoader
 {
@@ -19,11 +18,11 @@ namespace InputLoader
                     Menu.ShowLoadingScreen("Lancement de la partie..", 500);
                     Menu.ShowLoadingScreen("Lancement de la partie...", 500);
                     Console.Clear();
-                    if (!Save.IsIntroductionPlayed)
+                    /*if (!Save.IsIntroductionPlayed)
                     {
                         Story.Introduction();
                         Save.IsIntroductionPlayed = true; // Marquer l'introduction comme jouée
-                    }
+                    }*/
                     if (Program.currentMapIndex == 0)
                     {
                         Loading_Screen.Little_Woods();
