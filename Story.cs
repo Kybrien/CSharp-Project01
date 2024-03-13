@@ -10,7 +10,7 @@ namespace StoryLoader
         public static void Introduction()
         {
             Console.WriteLine("{===============================================================================================================}");
-            Sound.ChangeMusicBasedOnMap(13);
+            Sound.ChangeMusicBasedOnMap(12);
             TextDisplay.Sleeping("Dans un monde où les Pokémon règnent en maîtres, des objets mystérieux reposent, porteurs des secrets de l'univers.\n", 50);
             Menu.ShowLoadingScreen("{===============================================================================================================}\nDans un monde où les Pokémon règnent en maîtres, des objets mystérieux reposent, porteurs des secrets de l'univers.", 500);
             TextDisplay.Sleeping("Rassemblez-les tous pour déclencher la venue de celui qui sait, défiant le destin lui-même.\n", 50);
