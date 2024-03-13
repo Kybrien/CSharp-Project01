@@ -142,7 +142,7 @@ namespace CombatLoader
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Le pokémon s'est échapé");
+                                    Console.WriteLine("Le pokémon s'est échappé");
                                     Console.WriteLine();
 
                                     Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
@@ -164,7 +164,7 @@ namespace CombatLoader
                                 break;
                             case 4:
                                 pokemonJoueur.PointsDeVie = pvMaxJoueur;
-                                Console.WriteLine("Tous vos hp sont régénérer !");
+                                Console.WriteLine("Tous vos hp sont régénérés !");
                                 Console.WriteLine();
                                 Console.WriteLine($"\nC'est au tour du {pokemonRencontre.Nom} sauvage :");
                                 iaEasy(pokemonRencontre, pokemonJoueur);
